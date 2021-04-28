@@ -1,0 +1,10 @@
+baseurl: https://example.com/
+copyright: Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.
+paginate: 10
+theme: hugo-clarity
+disqusShortname: ''
+DefaultContentLanguage: en
+taxonomies:
+  category: categories
+  series: series
+  tag: tags
