@@ -1,4 +1,4 @@
-baseurl: https://example.com/
+baseurl: cougrstats.netlify.app
 copyright: Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved.
 paginate: 10
 theme: hugo-clarity
