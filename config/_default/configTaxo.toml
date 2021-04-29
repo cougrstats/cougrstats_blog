@@ -21,3 +21,4 @@ simple = true
 [privacy.youtube]
 disabled = false
 privacyEnhanced = true
+

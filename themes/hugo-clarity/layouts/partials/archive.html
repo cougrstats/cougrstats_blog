@@ -1,9 +1,13 @@
+{{- $filteredPosts := .Site.Params.blogDir }}
 {{ $pages := .Pages }}
 {{ if .IsHome }}
-  {{ $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
+  {{ $pages = .Site.RegularPages }}
+  {{ if $filteredPosts }}
+    {{ $pages = where $.Site.RegularPages "Section" $filteredPosts }}
+  {{ end }}
 {{ end }}
-<div class="grid-inverse wrap content">
-  <ul class="posts" id="posts">
+<div class='grid-inverse wrap content'>
+  <ul class='posts' id = 'posts'>
     {{- range (.Paginate $pages).Pages }}
       {{ partial "excerpt" . }}
     {{- end }}

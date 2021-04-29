@@ -1,0 +1,8 @@
+# prevent hugo from creating folders/indexes for each section
+disableKinds = ["section"]
+
+[permalinks]
+# :title is used if :slug is not defined in post frontmatter
+posts = "/:year/:month/:slug/"
+archm = "/:year/:month/"
+archy = "/:year/"

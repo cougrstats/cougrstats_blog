@@ -18,4 +18,4 @@ Contact us by joining our [list-serv](https://lists.wsu.edu/mailman/listinfo/r_w
 + Michael Meyer (current organizer): michael.f.meyer AT wsu DOT edu
 + Matt Brousil (current co-organizer):  matthew.brousil AT wsu DOT edu
 
-You can also learn more at our dedicated CEREO website: [https://cereo.wsu.edu/r-working-group/](https://cereo.wsu.edu/r-working-group/) 
+You can learn more and find our presentation schedule at the dedicated CEREO website: [https://cereo.wsu.edu/r-working-group/](https://cereo.wsu.edu/r-working-group/) 
