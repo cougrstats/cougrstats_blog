@@ -12,9 +12,9 @@ tags:
 description: Article description.
 featured: yes
 toc: no
-featureImage: /images/path/file.jpg
-thumbnail: /images/path/thumbnail.png
-shareImage: /images/path/share.png
+featureImage: /images/reticulate_2021041_large.png
+thumbnail: /images/reticulate_2021041_thumb.png
+shareImage: /images/reticulate_2021041_thumb.png
 codeMaxLines: 10
 codeLineNumbers: no
 figurePositionShow: yes

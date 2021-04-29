@@ -12,9 +12,9 @@ tags:
 description: Article description.
 featured: yes
 toc: no
-featureImage: /images/path/file.jpg
-thumbnail: /images/path/thumbnail.png
-shareImage: /images/path/share.png
+featureImage: /images/reticulate_2021041_large.png
+thumbnail: /images/reticulate_2021041_thumb.png
+shareImage: /images/reticulate_2021041_thumb.png
 codeMaxLines: 10
 codeLineNumbers: no
 figurePositionShow: yes
@@ -188,11 +188,11 @@ plt$show()
 
 
 ```
-## <cartopy.mpl.feature_artist.FeatureArtist object at 0x00000000326F65C0>
+## <cartopy.mpl.feature_artist.FeatureArtist object at 0x00000000316F55F8>
 ```
 
 ```
-## <cartopy.mpl.gridliner.Gridliner object at 0x00000000326F6550>
+## <cartopy.mpl.gridliner.Gridliner object at 0x00000000316F5588>
 ```
 
 ```
@@ -200,7 +200,7 @@ plt$show()
 ```
 
 ```
-## <cartopy.mpl.feature_artist.FeatureArtist object at 0x00000000326ED2E8>
+## <cartopy.mpl.feature_artist.FeatureArtist object at 0x0000000031726F28>
 ```
 
 <img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-2-1.png" width="1440" />
@@ -252,11 +252,11 @@ PlotAirTemp('2013-04-14 00:00:00')
 
 
 ```
-## <cartopy.mpl.feature_artist.FeatureArtist object at 0x00000000328B3E10>
+## <cartopy.mpl.feature_artist.FeatureArtist object at 0x0000000032882E10>
 ```
 
 ```
-## <cartopy.mpl.gridliner.Gridliner object at 0x00000000328B3DA0>
+## <cartopy.mpl.gridliner.Gridliner object at 0x0000000032882DA0>
 ```
 
 ```
@@ -264,7 +264,7 @@ PlotAirTemp('2013-04-14 00:00:00')
 ```
 
 ```
-## <cartopy.mpl.feature_artist.FeatureArtist object at 0x00000000328ACB38>
+## <cartopy.mpl.feature_artist.FeatureArtist object at 0x000000003287BB38>
 ```
 
 <img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-2-1.png" width="1440" />
