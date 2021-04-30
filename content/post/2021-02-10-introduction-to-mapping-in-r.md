@@ -1,6 +1,6 @@
 ---
 title: Introduction to mapping in R
-author: cougrstats
+author: Matt Brousil
 date: '2021-02-10'
 categories:
   - Introduction to R
@@ -53,7 +53,7 @@ Without even loading a package, you would be able to make a very basic map of th
 plot(quakes$long, quakes$lat)
 ```
 
-![fig_1](https://cougrstats.files.wordpress.com/2021/02/fig_1.png)
+![](https://cougrstats.files.wordpress.com/2021/02/fig_1.png)
 
 However, if you're familiar with `ggplot2` you can plot them a little more elegantly with a little bit more code:
 
@@ -62,7 +62,7 @@ ggplot(quakes) +
   geom_point(aes(x = long, y = lat))
 ```
 
-![fig_2](https://cougrstats.files.wordpress.com/2021/02/fig_2.png)
+![](https://cougrstats.files.wordpress.com/2021/02/fig_2.png)
 
 Perhaps you'd like to make the size of the points dependent on the magnitude of the earthquake:
 
@@ -71,7 +71,7 @@ ggplot(quakes) +
   geom_point(aes(x = long, y = lat, size = mag, alpha = 0.4))
 ```
 
-![fig_3](https://cougrstats.files.wordpress.com/2021/02/fig_3.png)
+![](https://cougrstats.files.wordpress.com/2021/02/fig_3.png)
 
 Note that right now `ggplot` isn't considering this spatial data yet, but just some points with coordinates.
 
@@ -152,7 +152,7 @@ ggplot(bears) +
   geom_point(aes(x = longitude, y = latitude, color = as.factor(Bear)))
 ```
 
-![fig_5](https://cougrstats.files.wordpress.com/2021/02/fig_5.png)
+![](https://cougrstats.files.wordpress.com/2021/02/fig_5.png)
 
 Another option would be to create a separate map for each bear in the study, and to indicate the progression of time using color. We'll facet by bear ID now, and color by date
 
@@ -162,7 +162,7 @@ ggplot(bears) +
   facet_wrap(~ Bear)
 ```
 
-![fig_6](https://cougrstats.files.wordpress.com/2021/02/fig_6.png)
+![](https://cougrstats.files.wordpress.com/2021/02/fig_6.png)
 
 It's very handy to be able to plot almost directly from a .csv file like this, but we could also convert this dataset into a more spatial-friendly `sf` object. Note that we provide a CRS, or coordinate reference system here. `4326` corresponds to WGS84.
 
@@ -210,7 +210,7 @@ ggplot(bears_sf) +
   geom_sf(aes(color = as.factor(Bear)))
 ```
 
-![fig_7](https://cougrstats.files.wordpress.com/2021/02/fig_7.png)
+![](https://cougrstats.files.wordpress.com/2021/02/fig_7.png)
 
 #### 2.2 More complex plotting
 
@@ -253,7 +253,7 @@ ggplot(ice) +
   geom_sf()
 ```
 
-![fig_8](https://cougrstats.files.wordpress.com/2021/02/fig_8.png)
+![](https://cougrstats.files.wordpress.com/2021/02/fig_8.png)
 
 As a quick sidenote, the [`tigris` package for R](https://github.com/walkerke/tigris) is an alternative resource for polygon data for US boundaries that you could use. It accesses shapefiles from the US Census and loads them as `sf` objects.
 
@@ -373,7 +373,7 @@ ggplot() +
   geom_sf(data = bear_two_pcs)
 ```
 
-![fig_9](https://cougrstats.files.wordpress.com/2021/02/fig_9.png)
+![](https://cougrstats.files.wordpress.com/2021/02/fig_9.png)
 
 Without transformation:
 
@@ -384,7 +384,7 @@ ggplot() +
   geom_sf(data = bear_two)
 ```
 
-![fig_10](https://cougrstats.files.wordpress.com/2021/02/fig_10.png)
+![](https://cougrstats.files.wordpress.com/2021/02/fig_10.png)
 
 Next we'll want to zoom in a bit. It would help to know the rough spatial boundaries of the polar bear data in order to do this well. We can use `st_bbox()` to get this
 information in the form of a bounding box, save it, then use it to define the boundaries of our plot. I've also added colors to differentiate the sea ice from Alaska's land area.
@@ -407,7 +407,7 @@ Now we have a plot that is starting to look usable:
 bear_plot
 ```
 
-![fig_11](https://cougrstats.files.wordpress.com/2021/02/fig_11.png)
+![](https://cougrstats.files.wordpress.com/2021/02/fig_11.png)
 
 You might want to add things like a north arrow or a scale bar. The `ggspatial` package provides some options for doing this with the functions `annotation_scale()` and `annotation_north_arrow()`.
 
@@ -424,7 +424,7 @@ bear_plot <- bear_plot +
 bear_plot
 ```
 
-![fig_12](https://cougrstats.files.wordpress.com/2021/02/fig_12.png)
+![](https://cougrstats.files.wordpress.com/2021/02/fig_12.png)
 
 For the next step we'll add an inset map to show the geographic context of where this study took place. This map will be zoomed out and show just the state of Alaska for reference. In order to do this we'll need to create a second `ggplot` object and then use `cowplot::ggdraw()` to combine our two maps.
 
@@ -447,7 +447,7 @@ inset_map <- ggplot(data = alaska_pcs) +
 inset_map
 ```
 
-![fig_13](https://cougrstats.files.wordpress.com/2021/02/fig_13.png)
+![](https://cougrstats.files.wordpress.com/2021/02/fig_13.png)
 
 Now that we've successfully made a map that we want to place as an inset it's time to combine our two `ggplot` objects into one using `ggdraw()`. You'll want to play around with the arguments to your inset `ggdraw()` call until you've arranged it in a way you like.
 
@@ -462,7 +462,7 @@ ggdraw() +
             scale = .66) # Inset scale
 ```
 
-![fig_14](https://cougrstats.files.wordpress.com/2021/02/fig_14.png)
+![](https://cougrstats.files.wordpress.com/2021/02/fig_14.png)
 
 #### 2.3 Taking this further
 
@@ -514,7 +514,7 @@ bear_time_plot <- ggplot() +
 bear_time_plot
 ```
 
-![fig_15](https://cougrstats.files.wordpress.com/2021/02/fig_15.png)
+![](https://cougrstats.files.wordpress.com/2021/02/fig_15.png)
 
 And lastly, you might want to represent the GPS data as a line instead of a series of points. ([Read here](https://github.com/r-spatial/sf/issues/321) for a discussion on converting to `LINESTRINGS`). You'll need to convert the points first and then you can plot as normal.
 
@@ -532,7 +532,7 @@ bear_time_plot +
 ## Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
-![fig_16](https://cougrstats.files.wordpress.com/2021/02/fig_16.png)
+![](https://cougrstats.files.wordpress.com/2021/02/fig_16.png)
 
 ```r
 ggdraw() +
@@ -550,7 +550,7 @@ ggdraw() +
 ## Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
-![fig_17](https://cougrstats.files.wordpress.com/2021/02/fig_17.png)
+![](https://cougrstats.files.wordpress.com/2021/02/fig_17.png)
 
 ## References
 

@@ -20,6 +20,7 @@ codeLineNumbers: no
 figurePositionShow: yes
 ---
 
+_By Sarah Murphy_
 
 [Download all code used below from the GitHub repository](https://github.com/sarahymurphy/r-reticulate-tutorial)!
 

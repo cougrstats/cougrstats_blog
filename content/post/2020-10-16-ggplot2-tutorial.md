@@ -1,6 +1,6 @@
 ---
 title: ggplot2 tutorial
-author: cougrstats
+author: Mikala Meize
 date: '2020-10-16'
 categories:
   - Package Introductions
@@ -26,7 +26,7 @@ There are several ways to set up a plot using ggplot(). The first is to simply r
 ggplot()
 ```
 
-![1](https://cougrstats.files.wordpress.com/2020/10/1.png)
+![](https://cougrstats.files.wordpress.com/2020/10/1.png)
 
 This tells R that you are prepping the plot space. You'll notice that the output is a blank space. This is because we have not specified an x or y axis, the variables we want to use, etc.
 
@@ -36,7 +36,7 @@ When building a plot with ggplot(), you add pieces of information in layers. The
 ggplot(data = mtcars)
 ```
 
-![2](https://cougrstats.files.wordpress.com/2020/10/2.png)
+![](https://cougrstats.files.wordpress.com/2020/10/2.png)
 
 Then each layer following will use that dataframe. Notice that even though we added a dataset, the output is still a blank space.
 
@@ -47,14 +47,14 @@ ggplot(data = mtcars) +
   geom_boxplot(aes(x = mpg)) #specified the data in the first layer and the x variable in the second
 ```
 
-![3](https://cougrstats.files.wordpress.com/2020/10/3.png)
+![](https://cougrstats.files.wordpress.com/2020/10/3.png)
 
 ```r
 ggplot(data = mtcars, aes(x = mpg)) +
   geom_boxplot() #specified both data and x variable in the first layer and the type of plot alone in the second
 ```
 
-![4](https://cougrstats.files.wordpress.com/2020/10/4.png)
+![](https://cougrstats.files.wordpress.com/2020/10/4.png)
 
 These plots are the same, but using the aes() code, the x variable was specified in different layers. The 'aes' is short for aesthetic.
 
@@ -68,7 +68,7 @@ Using the dataset mtcars, mpg (miles per gallon) will be on the x axis and hp (h
 ggplot(data = mtcars, aes(x = mpg, y = hp))
 ```
 
-![5](https://cougrstats.files.wordpress.com/2020/10/5.png)
+![](https://cougrstats.files.wordpress.com/2020/10/5.png)
 
 I have not clarified how I want these variables plotted (lines, points, etc.) so the x and y axes are labeled, but there is no data in the plot space. In the next layer, I specify that I want the data plotted as points.
 
@@ -77,7 +77,7 @@ ggplot(data = mtcars, aes(x = mpg, y = hp)) +
   geom_point()
 ```
 
-![6](https://cougrstats.files.wordpress.com/2020/10/6.png)
+![](https://cougrstats.files.wordpress.com/2020/10/6.png)
 
 I am interested in the relationship between displacement and mpg too. By adding another layer, I can add a second y variable.
 
@@ -87,7 +87,7 @@ ggplot(data = mtcars, aes(x = mpg)) +
   geom_point(aes(y = disp))
 ```
 
-![7](https://cougrstats.files.wordpress.com/2020/10/7.png)
+![](https://cougrstats.files.wordpress.com/2020/10/7.png)
 
 Because I have two y variables, I removed the y specification from the first layer and added the separate y variables in their own layers. To differentiate one set of points from another, I can request different shapes for the data points based on variable.
 
@@ -97,7 +97,7 @@ ggplot(data = mtcars, aes(x = mpg)) +
   geom_point(aes(y = disp, shape = 'Displacement'))
 ```
 
-![8](https://cougrstats.files.wordpress.com/2020/10/8.png)
+![](https://cougrstats.files.wordpress.com/2020/10/8.png)
 
 Now I can tell the difference between horsepower and displacement, and there is a legend off to the side explaining this. You can do the same thing with lines instead of points.
 
@@ -107,7 +107,7 @@ ggplot(data = mtcars, aes(x = mpg)) +
   geom_line(aes(y = disp))
 ```
 
-![9](https://cougrstats.files.wordpress.com/2020/10/9.png)
+![](https://cougrstats.files.wordpress.com/2020/10/9.png)
 
 Instead of shape, use linetype to differentiate between variables.
 
@@ -117,7 +117,7 @@ ggplot(data = mtcars, aes(x = mpg)) +
   geom_line(aes(y = disp, linetype = 'Displacement'))
 ```
 
-![10](https://cougrstats.files.wordpress.com/2020/10/10.png)
+![](https://cougrstats.files.wordpress.com/2020/10/10.png)
 
 You can change the color of each plotted variable too. If you add the label inside aes(), then R picks the line color for you.
 
@@ -127,7 +127,7 @@ ggplot(data = mtcars, aes(x = mpg)) +
   geom_line(aes(y = disp, color = 'Displacement'))
 ```
 
-![11](https://cougrstats.files.wordpress.com/2020/10/11.png)
+![](https://cougrstats.files.wordpress.com/2020/10/11.png)
 
 You can specify the color of each line by include the color code outside the aes().
 
@@ -137,7 +137,7 @@ ggplot(data = mtcars, aes(x = mpg)) +
   geom_line(aes(y = disp), color = 'green')
 ```
 
-![12](https://cougrstats.files.wordpress.com/2020/10/12.png)
+![](https://cougrstats.files.wordpress.com/2020/10/12.png)
 
 ### Publishable Plots
 
@@ -147,7 +147,7 @@ In the following example, I am using the economics dataset that comes loaded wit
 ggplot(data = economics, aes(x = date))
 ```
 
-![13](https://cougrstats.files.wordpress.com/2020/10/13.png)
+![](https://cougrstats.files.wordpress.com/2020/10/13.png)
 
 The first variable I'll plot is 'psavert' (Personal Savings Rate), and I'll plot it as a line.
 
@@ -156,7 +156,7 @@ ggplot(data = economics, aes(x = date)) +
   geom_line(aes(y = psavert))
 ```
 
-![14](https://cougrstats.files.wordpress.com/2020/10/14.png)
+![](https://cougrstats.files.wordpress.com/2020/10/14.png)
 
 The second variable I'll plot is 'uempmed' (Duration of Unemployment measured in weeks).
 
@@ -166,7 +166,7 @@ ggplot(data = economics, aes(x = date)) +
   geom_line(aes(y = uempmed))
 ```
 
-![15](https://cougrstats.files.wordpress.com/2020/10/15.png)
+![](https://cougrstats.files.wordpress.com/2020/10/15.png)
 
 As before, the lines are indistinguishable. For this example, I want to make a black and white plot that I could publish with. So I'll let R choose the line type for these two variables.
 
@@ -176,7 +176,7 @@ ggplot(data = economics, aes(x = date)) +
   geom_line(aes(y = uempmed, linetype = 'Duration of Unemployment (weeks)'))
 ```
 
-![16](https://cougrstats.files.wordpress.com/2020/10/16.png)
+![](https://cougrstats.files.wordpress.com/2020/10/16.png)
 
 I have no need for the grid in the background so I can use the theme() layer to change this. You can remove some of the grid lines, or all of the grid lines.
 
@@ -187,7 +187,7 @@ ggplot(data = economics, aes(x = date)) +
   theme(panel.grid.major = element_blank())
 ```
 
-![17](https://cougrstats.files.wordpress.com/2020/10/17.png)
+![](https://cougrstats.files.wordpress.com/2020/10/17.png)
 
 ```r
 ggplot(data = economics, aes(x = date)) +
@@ -197,7 +197,7 @@ ggplot(data = economics, aes(x = date)) +
         panel.grid.minor = element_blank())
 ```
 
-![18](https://cougrstats.files.wordpress.com/2020/10/18.png)
+![](https://cougrstats.files.wordpress.com/2020/10/18.png)
 
 If you want zero grid lines, you can skip a step and do this:
 
@@ -208,7 +208,7 @@ ggplot(data = economics, aes(x = date)) +
   theme(panel.grid = element_blank())
 ```
 
-![19](https://cougrstats.files.wordpress.com/2020/10/19.png)
+![](https://cougrstats.files.wordpress.com/2020/10/19.png)
 
 I want to add axis lines for both x and y, and I want them to be black.
 
@@ -220,7 +220,7 @@ ggplot(data = economics, aes(x = date)) +
         axis.line = element_line(color = 'black'))
 ```
 
-![20](https://cougrstats.files.wordpress.com/2020/10/20.png)
+![](https://cougrstats.files.wordpress.com/2020/10/20.png)
 
 We can also use preset themes. Most of these themes are in the tidyverse library, but some of the more unique themes are part of the ggthemes library.
 I tend to use the theme_bw() or the theme_classic() when building my publishable plots.
@@ -237,7 +237,7 @@ ggplot(data = economics, aes(x = date)) +
         axis.line = element_line(color = 'black'))
 ```
 
-![21](https://cougrstats.files.wordpress.com/2020/10/21.png)
+![](https://cougrstats.files.wordpress.com/2020/10/21.png)
 
 ```r
 ggplot(data = economics, aes(x = date)) +
@@ -246,7 +246,7 @@ ggplot(data = economics, aes(x = date)) +
   theme_classic()
 ```
 
-![22](https://cougrstats.files.wordpress.com/2020/10/22.png)
+![](https://cougrstats.files.wordpress.com/2020/10/22.png)
 
 ```r
 #theme_classic() does all of the things I did manually above, but in one line of code instead of several.
@@ -262,7 +262,7 @@ ggplot(data = economics, aes(x = date)) +
   theme(legend.position = 'bottom')
 ```
 
-![23](https://cougrstats.files.wordpress.com/2020/10/23.png)
+![](https://cougrstats.files.wordpress.com/2020/10/23.png)
 
 This looks much better, but the axis titles and the legend title are still not publishable quality. I can fix the axis and plot titles using the labs() layer.
 
@@ -278,7 +278,7 @@ ggplot(data = economics, aes(x = date)) +
        subtitle = 'US Economic Data')
 ```
 
-![24](https://cougrstats.files.wordpress.com/2020/10/24.png)
+![](https://cougrstats.files.wordpress.com/2020/10/24.png)
 
 My plot now has no Y axis title, a grammatically correct x axis title, a plot title, and a subtitle. In this next step, I'll go back to the theme() options and center the plot title and get rid of the legend title.
 
@@ -297,7 +297,7 @@ ggplot(data = economics, aes(x = date)) +
        subtitle = 'US Economic Data')
 ```
 
-![25](https://cougrstats.files.wordpress.com/2020/10/25.png)
+![](https://cougrstats.files.wordpress.com/2020/10/25.png)
 
 Now I have a beautiful black and white plot, with no odd coding language. This can be exported from R as an image or as a PDF.
 
@@ -319,6 +319,6 @@ ggplot(data = economics, aes(x = date)) +
        subtitle = 'US Economic Data')
 ```
 
-![26](https://cougrstats.files.wordpress.com/2020/10/26.png)
+![](https://cougrstats.files.wordpress.com/2020/10/26.png)
 
 There are so many more things you can do with ggplot, this is only a start to the possibilities. I highly recommend browing the ggplot website and their posted cheat sheets to learn more: <https://ggplot2.tidyverse.org/>

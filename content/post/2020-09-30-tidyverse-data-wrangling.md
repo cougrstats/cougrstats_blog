@@ -22,9 +22,7 @@ Programs that provide an easy to use graphical user interface (GUI) such as Exce
 
   2. **Data Integrity.** Excel often does unexpected things to data. For example, Excel will attempt to auto-recognize data types when entering data. If I try to enter the value "1-15" this automatically becomes the date "January 15, 2020". Excel also does not always respect the preservation and display of significant digits. Some formulas don't follow sounds statistical philosophy. Many advanced data maneuvers are absent from or really difficult to perform in Excel.
 
-  3.
-
-**Work Flow.** If R is required eventually for statistics, modeling, rmarkdown, shiny, etc. then keeping all steps "in house" just makes sense. Since R and RStudio provide most of the tools a data scientist needs why muddy the waters by switching back and forth with Excel. However, it should be noted that there are many packages that make it easy to integrate the two approaches. For example, _readxl_ is a tidyverse package for reading Excel workbooks. It is also possible to code Excel procedures using Visual Basic for Applications (VBA) code and then programmatically execute this code in R. Many choose a hybrid approach in which Excel is used as a data exploration tool that can be used to figure out which steps need to be taken to accomplish a task in R.
+  3. **Work Flow.** If R is required eventually for statistics, modeling, rmarkdown, shiny, etc. then keeping all steps "in house" just makes sense. Since R and RStudio provide most of the tools a data scientist needs why muddy the waters by switching back and forth with Excel. However, it should be noted that there are many packages that make it easy to integrate the two approaches. For example, _readxl_ is a tidyverse package for reading Excel workbooks. It is also possible to code Excel procedures using Visual Basic for Applications (VBA) code and then programmatically execute this code in R. Many choose a hybrid approach in which Excel is used as a data exploration tool that can be used to figure out which steps need to be taken to accomplish a task in R.
 
 ## Tidyverse Packages
 
@@ -40,23 +38,12 @@ Programs that provide an easy to use graphical user interface (GUI) such as Exce
 ```
 
 <https://www.tidyverse.org/>
-
 <blockquote>
+The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.
 
->
-> The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.
->
->
+Install the complete tidyverse with:
 
->
-> Install the complete tidyverse with:
->
->
-
->
-> install.packages("tidyverse")
->
->
+install.packages("tidyverse")
 </blockquote>
 
 Loading the _tidyverse_ library is a great way to load many useful packages in one simple step. Several packages included in this distribution are great tools for data wrangling. Notably _dplyr_, _readr_, and _tidyr_ are critical assets. The general philosophy is that if a number of steps are needed for a data wrangling task these can be modularized into a stream-lined set into a human readable commands.
@@ -75,7 +62,7 @@ Some argue that tidyverse syntax is not intuitive and that it should not be taug
 
 ## Pipe Operator
 
-"%>"
+"%>%"
 
 The pipe operator is the crux of all tidyverse data operations. It strings together multiple functions without the need for subsetting. If a number of operations are needed to be performed on a single dataframe this approach simplifies the process. The following image shows the mathematical principle of how the pipe operator works by bridging functions with explicitly subsetting arguments. In this case, steps A %>% B %>% C would represent the tidyverse "pipe syntax" while f(g(x)) is the base R approach.
 
@@ -158,11 +145,7 @@ Sometimes it is necessary to define a small dataframe in your code rather than r
 **Note.** A tibble is a type of dataframe specific to the tidyverse. See the following description:
 
 <blockquote>
-
->
-> A tibble, or tbl_df, is a modern reimagining of the data.frame, keeping what time has proven to be effective, and throwing out what is not. Tibbles are data.frames that are lazy and surly: they do less (i.e. they don't change variable names or types, and don't do partial matching) and complain more (e.g. when a variable does not exist). This forces you to confront problems earlier, typically leading to cleaner, more expressive code. Tibbles also have an enhanced print() method which makes them easier to use with large datasets containing complex objects.
->
->
+A tibble, or tbl_df, is a modern reimagining of the data.frame, keeping what time has proven to be effective, and throwing out what is not. Tibbles are data.frames that are lazy and surly: they do less (i.e. they don't change variable names or types, and don't do partial matching) and complain more (e.g. when a variable does not exist). This forces you to confront problems earlier, typically leading to cleaner, more expressive code. Tibbles also have an enhanced print() method which makes them easier to use with large datasets containing complex objects.
 </blockquote>
 
 <https://tibble.tidyverse.org/>

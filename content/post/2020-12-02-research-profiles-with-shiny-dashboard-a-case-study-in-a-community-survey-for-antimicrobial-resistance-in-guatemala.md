@@ -1,7 +1,7 @@
 ---
 title: 'Research profiles with Shiny Dashboard: A case study in a community survey
   for antimicrobial resistance in Guatemala'
-author: cougrstats
+author: Juan Carlos Romero
 date: '2020-12-02'
 tags:
   - Research Profiles
@@ -11,7 +11,7 @@ slug: research-profiles-with-shiny-dashboard-a-case-study-in-a-community-survey-
 
 October 28th, 2020.
 
-_Romero Juan Carlos (jromero@ces.uvg.edu.gt), Alvis Juan Pablo (jalvis@ces.uvg.edu.gt), Grajeda Laura María (lgrajeda@ces.uvg.edu.gt) from Centro de Estudios en Salud, Universidad del Valle de Guatemala._
+_By Juan Carlos Romero (jromero@ces.uvg.edu.gt), Juan Pablo Alvis (jalvis@ces.uvg.edu.gt), Laura María Grajeda (lgrajeda@ces.uvg.edu.gt) from Centro de Estudios en Salud, Universidad del Valle de Guatemala._
 
 The successful implementation of community surveys requires close and timely monitoring of study activities. To monitor the performance of an antimicrobial resistance two-stage cluster survey in communities of the highlands of Guatemala, we developed a web-based application with R Shiny dashboards. Our password-protected application displays study progress indicators, approaching activities, and unresolved data quality issues using maps, tables, graphics, dynamic texts and downloadable spreadsheets. Scientists use this information to assess study performance against upcoming milestones, to address deviations in a timely manner, to assist real-time planning of field activities and to serve as a communication tool within the study team and with funding organizations.
 
