@@ -15,7 +15,7 @@ toc: no
 featureImage: /images/reticulate_2021041_large.png
 thumbnail: /images/reticulate_2021041_thumb.png
 shareImage: /images/reticulate_2021041_thumb.png
-codeMaxLines: 10
+codeMaxLines: 100
 codeLineNumbers: no
 figurePositionShow: yes
 ---

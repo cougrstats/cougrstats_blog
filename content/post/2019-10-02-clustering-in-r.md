@@ -1,6 +1,6 @@
 ---
 title: Clustering in R
-author: cougrstats
+author: Enrique Jimenez
 date: '2019-10-02'
 categories:
   - Research Profiles
@@ -86,7 +86,7 @@ We will use the classic Fisher's iris dataset mostly because Fisher was cool. Ho
   iris_plot_k3
 ```
 
-![cluster_1](https://cougrstats.files.wordpress.com/2019/10/cluster_1.png)
+![](https://cougrstats.files.wordpress.com/2019/10/cluster_1.png)
 
 ```r
   set.seed(23)
@@ -104,7 +104,7 @@ We will use the classic Fisher's iris dataset mostly because Fisher was cool. Ho
   iris_plot_k4
 ```
 
-![cluster_2](https://cougrstats.files.wordpress.com/2019/10/cluster_2.png)
+![](https://cougrstats.files.wordpress.com/2019/10/cluster_2.png)
 
 ```r
   iris_plot_species<-ggplot(petals_kmeans) +
@@ -118,7 +118,7 @@ We will use the classic Fisher's iris dataset mostly because Fisher was cool. Ho
   iris_plot_species
 ```
 
-![cluster_3](https://cougrstats.files.wordpress.com/2019/10/cluster_3.png)
+![](https://cougrstats.files.wordpress.com/2019/10/cluster_3.png)
 
 ```r
   final_figure <- ggarrange(plotlist = list(iris_plot_k3, iris_plot_k4, iris_plot_species),
@@ -127,12 +127,10 @@ We will use the classic Fisher's iris dataset mostly because Fisher was cool. Ho
   final_figure
 ```
 
-![cluster_4](https://cougrstats.files.wordpress.com/2019/10/cluster_4.png)
+![](https://cougrstats.files.wordpress.com/2019/10/cluster_4.png)
 
 ## Other simple clustering algorithms
-
   * **K-medoids algorithm** or **PAM**
-
   * **Heirarchical clustering**
 
 ## Model evaluation
@@ -164,7 +162,7 @@ nb<-NbClust(iris[3:4], distance = 'euclidean', min.nc = 2, max.nc = 9, method = 
 ## * According to the majority rule, the best number of clusters is  3 .
 ```
 
-![cluster_5](https://cougrstats.files.wordpress.com/2019/10/cluster_5.png)
+![](https://cougrstats.files.wordpress.com/2019/10/cluster_5.png)
 
 ### Silhouette Coefficient
 
@@ -182,14 +180,11 @@ The Silhouette Coefficient uses the distances between individuals in the same cl
           legend = FALSE)
 ```
 
-![cluster_6](https://cougrstats.files.wordpress.com/2019/10/cluster_6.png)
+![](https://cougrstats.files.wordpress.com/2019/10/cluster_6.png)
 
 ### Other clustering evaluation methods
-
   * **Calinski-Harabasz Index**
-
   * **Davies-Bouldin Index**
-
   * **Dunn Index**
 
 ## Model based clustering
@@ -230,6 +225,6 @@ Here we'll use `library(tidyLPA)` to run an LPA on the petal data.
     labs(colour = "Class")
 ```
 
-![cluster_7](https://cougrstats.files.wordpress.com/2019/10/cluster_7.png)
+![](https://cougrstats.files.wordpress.com/2019/10/cluster_7.png)
 
 One thing to keep in mind is that, as a model-based method, LPA is tied to a series of assumptions. One of these assumptions refers to the structure of the covariance matrix of the observed variables, which can drastically affect the fit of LPA models.

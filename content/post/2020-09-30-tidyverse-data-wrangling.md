@@ -1,6 +1,6 @@
 ---
 title: Tidyverse Data Wrangling
-author: cougrstats
+author: Ben Leonard
 date: '2020-09-30'
 tags:
   - data wrangling

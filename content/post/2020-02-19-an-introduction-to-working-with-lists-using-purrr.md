@@ -1,6 +1,6 @@
 ---
 title: An introduction to working with lists using purrr
-author: cougrstats
+author: Matt Brousil
 date: '2020-02-19'
 categories:
   - Package Introductions
@@ -19,17 +19,11 @@ This week I'm going to walk through some examples of applying functions to every
 We can use the `purrr` package to replace loops. In my experience there is sometimes a speed tradeoff, but we can gain some very important confidence in the reproducibility and accuracy of our code with `purrr.` It can help us write more concise code that is structured in very consistent ways. This should be familiar to some degree if you saw [Vera Pfeiffer's](https://twitter.com/verawp) [talk](https://cougrstats.wordpress.com/2020/02/12/r-functions-and-the-apply-family/) on functions and using `lapply()`.
 
 Today we'll analyze a dataset using several common tools from `purrr`, starting from reading in data using `purrr`. We'll do the following:
-
   1. Read in many CSVs as a list of data frames
-
   2. Apply a model to the data for each separate data frame
-
   3. Cover how to handle errors while iterating over lists
-
   4. Filter the data for each data frame separately, then combine into single data frame
-
   5. Split a data frame into a new list
-
   6. Plot and export .png files for many figures all at once
 
 You can access a compressed file [here](https://drive.google.com/drive/folders/1HDeAg0EtqE_T1PuRBjKsczR8_ev3XKIA?usp=sharing) with the data and folder structure for this exercise. Note that the data are taken and modified from [here](https://www.spc.noaa.gov/wcm/).
@@ -56,10 +50,10 @@ dir("data/", pattern = ".csv", full.names = TRUE)
 ```
 
 Using `purrr::map` we're able to read them all in at once. Here's how a map statement works:
-
-    map(.x = , # Here we supply the vector or list of values (in this case filenames)
-        .f = ~ ) # Here we supply the function we want to feed those values into
-
+```r
+map(.x = , # Here we supply the vector or list of values (in this case filenames)
+    .f = ~ ) # Here we supply the function we want to feed those values into
+```
 Compare this with `lapply()`, which is very similar:
 
 ```r
@@ -316,14 +310,14 @@ transpose(safe_model_output)
 ```
 
 This is helpful because we can now just pull out the results portion and drop the null values (or, fix the errors and re-run if you choose).
+```r
+successful_models %
+  discard(is.null)
 
-    successful_models %
-      discard(is.null)
+length(successful_models)
 
-    length(successful_models)
-
-    ## [1] 10
-
+## [1] 10
+```
 Based on error output, it looks like we have an issue with the `mag` column in data frame 7.
 
 ```r
@@ -338,70 +332,71 @@ My bad, I had burgers on the brain.
 ## 3. Summarizing and condensing datasets
 
 Maybe we're sick of having 11 data frames now. Let's summarize the data a bit, and then have `purrr` spit the output back to us as a single, condensed data frame. The `_df` tacked onto `map` signifies that it's returning a single data frame as its output instead of a list. There are other output options as well.
+```r
+tornado_summary %
+  mutate(mag = as.numeric(mag)) %>%
+  filter(
+    # Remove unknown values
+    mag != -9,
+    # Tornadoes not crossing state lines
+    ns == 1,
+    # Entire track in current state
+    sn == 1,
+    # Entire track, not a portion of the track
+    sg == 1) %>%
+  select(om, date, yr, st, mag, loss, closs))
 
-    tornado_summary %
-                                mutate(mag = as.numeric(mag)) %>%
-                                filter(
-                                  # Remove unknown values
-                                  mag != -9,
-                                  # Tornadoes not crossing state lines
-                                  ns == 1,
-                                  # Entire track in current state
-                                  sn == 1,
-                                  # Entire track, not a portion of the track
-                                  sg == 1) %>%
-                                select(om, date, yr, st, mag, loss, closs))
+## Warning: NAs introduced by coercion
 
-    ## Warning: NAs introduced by coercion
+head(tornado_summary)
 
-    head(tornado_summary)
+##   om       date   yr st mag  loss closs
+## 1  1 2008-01-07 2008 MO   0  0.00     0
+## 2  2 2008-01-07 2008 MO   0  0.02     0
+## 3  3 2008-01-07 2008 IL   3  4.00     0
+## 4  4 2008-01-07 2008 MO   0  0.00     0
+## 5  5 2008-01-07 2008 WI   3 13.81     0
+## 6  6 2008-01-07 2008 WI   1  7.93     0
 
-    ##   om       date   yr st mag  loss closs
-    ## 1  1 2008-01-07 2008 MO   0  0.00     0
-    ## 2  2 2008-01-07 2008 MO   0  0.02     0
-    ## 3  3 2008-01-07 2008 IL   3  4.00     0
-    ## 4  4 2008-01-07 2008 MO   0  0.00     0
-    ## 5  5 2008-01-07 2008 WI   3 13.81     0
-    ## 6  6 2008-01-07 2008 WI   1  7.93     0
+tail(tornado_summary)
 
-    tail(tornado_summary)
-
-    ##           om       date   yr st mag  loss closs
-    ## 12966 617019 2018-12-27 2018 LA   1  7000     0
-    ## 12967 617020 2018-12-27 2018 LA   1  7000     0
-    ## 12968 617021 2018-12-27 2018 MS   0 15000     0
-    ## 12969 617022 2018-12-31 2018 KY   1 55000     0
-    ## 12970 617023 2018-12-31 2018 IN   1 50000     0
-    ## 12971 617024 2018-12-31 2018 IN   1 20000     0
+##           om       date   yr st mag  loss closs
+## 12966 617019 2018-12-27 2018 LA   1  7000     0
+## 12967 617020 2018-12-27 2018 LA   1  7000     0
+## 12968 617021 2018-12-27 2018 MS   0 15000     0
+## 12969 617022 2018-12-31 2018 KY   1 55000     0
+## 12970 617023 2018-12-31 2018 IN   1 50000     0
+## 12971 617024 2018-12-31 2018 IN   1 20000     0
+```
 
 ## 4. Splitting into lists and extracting list items
 
 Previously the data had been separated into a list by year, but maybe what we really want is to get them separated at the state level. We can do this!
+```r
+tornado_by_state %
+  # x is our data frame to split
+  split(x = .,
+  # f is the factor to use in splitting (state in this case)
+        f = list(.$st))
 
-    tornado_by_state %
-      # x is our data frame to split
-      split(x = .,
-            # f is the factor to use in splitting (state in this case)
-            f = list(.$st))
+# How many list items do we have now?
+length(tornado_by_state)
 
-    # How many list items do we have now?
-    length(tornado_by_state)
-
-    ## [1] 51
-
+## [1] 51
+```
 Let's plot yearly data, but we're not sure it will work so we'll use safely() again.
-
-    safe_plot % ggplot() + geom_boxplot(aes(group = yr, y = loss)),
-                        otherwise = NULL)
-    plot_test <- map(.x = tornado_by_state,
-                     .f = ~ safe_plot(.x))
-
+```r
+safe_plot % ggplot() + geom_boxplot(aes(group = yr, y = loss)),
+                                    otherwise = NULL)
+plot_test <- map(.x = tornado_by_state,
+                 .f = ~ safe_plot(.x))
+```
 There are a couple of ways to extract list items, but one method we can use is `pluck()`
-
-    plot_results %
-      transpose() %>%
-      pluck("result")
-
+```r
+plot_results %
+  transpose() %>%
+  pluck("result")
+```
 ## 5. Iterating over multiple vectors or lists
 
 Now we can save each of these plots we've created. We'll want to have names ready for their filenames, though. To combine our state names with our state plots we'll use `map2()`, which iterates over two vectors or lists (.x & .y) simultaneously. **Note** that this iteration is in parallel! This means that .x[1] and .y[1] are both used simultaneously, then .x[2] and .y[2], etc. The two vectors are not crossed, but this can be done using the `purrr::cross()` function if you'd like. Also note that because they are done in parallel, .x and .y have to have the same length!
@@ -422,7 +417,5 @@ map2(.x = names(tornado_by_state),
 ```
 
 ## References:
-
   * <https://purrr.tidyverse.org/>
-
   * <https://jennybc.github.io/purrr-tutorial/bk01_base-functions.html>

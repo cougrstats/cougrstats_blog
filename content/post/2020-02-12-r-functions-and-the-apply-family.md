@@ -1,6 +1,6 @@
 ---
 title: R functions and the Apply family
-author: cougrstats
+author: Vera Pfeiffer
 date: '2020-02-12'
 categories:
   - Introduction to R
@@ -79,15 +79,10 @@ BODY
 }
 
 A function call proceeds as follows:
-
   * Execution jumps to the first line of the function upon seeing the call FUNCTION.NAME(ARGUMENT.LIST)
-
   * Function's PARAMETER.LIST is copied from caller's ARGUMENT.LIST by name or position, and from defaults specified as PARAMETER.NAME=DEFAULT in PARAMETER.LIST
-
   * Assignment to function parameters and local variables doesn't affect caller's variables
-
   * Code in function is executed until return(EXPRESSION), or until function's closing }
-
   * Execution returns to caller; if caller assigned a variable to function it gets EXPRESSION from function's return() or last expression
 
 ```r
@@ -150,11 +145,8 @@ sum.of.squares(x,y)
 ```
 
 Function goals:
-
   * short
-
   * performs one opperation
-
   * intuitive name
 
 Functions should primarily help you improve the readability of your code, and secondarily improve your efficiency and organization. It also helps you maintain your code by storing it in separate easily accessible files, rather than in super, super, long whole-project document.

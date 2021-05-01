@@ -1,0 +1,11 @@
+test date,which group?,value,group*value,"""Notes""",lat,long
+42370,A,1,A1,"experimental, greenhouse",-27.18648°,-109.43542°
+42371,A,5,A5,"experimental, greenhouse",-27.18648°,-109.43542°
+42371,B,75,B75,"experimental, lab",-27.18648°,-109.43542°
+,B,4,B4,"experimental, greenhouse",-27.18648°,-109.43542°
+,A,2,A2,"experimental, lab",-27.18648°,-109.43542°
+42370,A,1,A1,"experimental, greenhouse",-27.18648°,-109.43542°
+42373,A,1,A1,"experimental, lab",-27.18351°,-109.44268°
+42374,A,544,A544,"experimental, greenhouse",-27.18351°,-109.44268°
+42375,B,45,B45,"experimental, lab",-27.18351°,-109.44268°
+42370,A,1,A1,"experimental, greenhouse",-27.18351°,-109.44268°

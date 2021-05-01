@@ -1,6 +1,6 @@
 ---
 title: An Introduction to data.table using sythetic lat/lon data
-author: cougrstats
+author: Nicholas A. Potter
 date: '2020-04-15'
 categories:
   - Package Introductions

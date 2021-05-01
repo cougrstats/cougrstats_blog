@@ -1,6 +1,6 @@
 ---
 title: Sharing and cleaning data
-author: cougrstats
+author: Abigail Hudak
 date: '2020-04-01'
 categories:
   - Package Introductions
@@ -25,9 +25,7 @@ The goal of this document is to share some tips and ideas about structuring and 
 The package janitor is awesome for data cleaning. Consider learning this package if using a lot of Excel sheets from other users. Excel sheets may have bad columns names (i.e. with "?" or upper and lowercase letters) or empty data, etc. You want your R objects to be clean 1) for your sanity, 2) for readability of your code, and 3) for ease of coding.
 
 A couple useful links for this package:
-
 1) <https://github.com/sfirke/janitor>
-
 2) <https://garthtarr.github.io/meatR/janitor.html>
 
 Making sure column names are clean
@@ -111,14 +109,10 @@ rename() #rename individual columns (not good for changing a lot)
 **General tips**
 
 _Your code should be readable for your own sanity and for reproducibility._
-
--Use `::` to show which package does what `dplyr::lef_join(a, b, by = "x1")`
-
--Spacing before and after operator `function = print()`
-
--Indentation doesn't have any meaning in R like it does in other languages, but it is critical in making your code readable.
-
--Annotate your code!! Good to annotate above or next to a line.
+- Use `::` to show which package does what `dplyr::lef_join(a, b, by = "x1")`
+- Spacing before and after operator `function = print()`
+- Indentation doesn't have any meaning in R like it does in other languages, but it is critical in making your code readable.
+- Annotate your code!! Good to annotate above or next to a line.
 
 ```r
 #gross

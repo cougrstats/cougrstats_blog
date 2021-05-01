@@ -1,0 +1,272 @@
+---
+title: Cleaning messy scripts and data
+author: Matt Brousil
+date: '2019-04-10'
+slug: cleaning-messy-scripts-and-data
+categories: []
+tags:
+  - Data formatting
+  - janitor
+description: Article description.
+featured: yes
+toc: no
+featureImage: /images/path/file.jpg
+thumbnail: /images/path/thumbnail.png
+shareImage: /images/path/share.png
+codeMaxLines: 10
+codeLineNumbers: no
+figurePositionShow: yes
+---
+
+_By Matt Brousil_
+
+```{r echo=FALSE, include=FALSE}
+library(lintr)
+library(tidyverse)
+library(janitor)
+library(zoo)
+```
+
+The goal of this walkthrough is to look over some methods for cleaning and
+maintaining data and scripts. This will not be comprehensive for either topic,
+but contains some tips I've collected. 
+
+
+### Data
+
+Cleaned data is a wonderful thing. There are resources like Data Carpentry to
+provide crash courses in how to get started in doing data manipulation and management
+in R. Below are a few additional tips and tricks for cleaning up data that you
+may not have previously encountered.  
+
+**1. Dealing with bad column names.**  
+The csv below has the following column names in its raw form:  
+*test date, which group?,	value,	group\*value,	"Notes"*  
+
+How does R interpret those when read in?
+```{r}
+og_csv <- read.csv(file = "bad-header.csv")
+
+og_csv
+```
+\  
+
+There is a function working under-the-hood in R to make the crazy names of our
+csv "valid." This is the function `make.names()`, which is referenced by
+`read.csv()` by default. This is what happens if we turn it off:
+
+```{r}
+raw_csv <- read.csv(file = "bad-header.csv", check.names = F)
+
+raw_csv
+
+str(raw_csv)
+```
+
+\  
+
+If we want to start referencing those column names in our code it gets trickier,
+as we need to start quoting:
+```{r}
+raw_csv$`which group?`
+```
+\  
+
+There are a couple of ways to go about cleaning up the names of a messy file. We
+can use `make.names()` as described above, which requires a **vector** of names
+as input. Alternatively, we can use `clean_names()` from the `janitor` package.
+`clean_names()` will take a **data frame** directly and return a new data frame
+with tidy-looking names.
+```{r}
+
+make.names(names(raw_csv))
+
+clean_names(raw_csv) %>% names()
+```
+
+\  
+
+It also has a lot of options for changing case.
+```{r}
+clean_names(raw_csv, case = "upper_camel") %>% names()
+
+```
+\  
+
+We'll keep the tidier format:
+```{r}
+raw_csv <- clean_names(raw_csv)
+```
+
+\  
+
+**2. One person's Excel dates are another person's usable data**  
+Working with dates can be difficult at times, especially when importing them
+from Excel. In some cases you will read in date data from Excel and find that
+your dates have been converted to serial numbers such as this:
+```{r}
+raw_csv$test_date
+```
+\  
+
+The `janitor` package comes in useful once again: We can use
+`excel_numeric_to_date()` to convert these to dates we can use. Note that they
+must be `numeric`.  
+```{r}
+excel_numeric_to_date(as.numeric(raw_csv$test_date))
+
+raw_csv$test_date <- excel_numeric_to_date(as.numeric(raw_csv$test_date))
+```
+\  
+
+**3. Fill in NA values in a sequence of data**  
+If you've entered data collected by hand, it isn't difficult to imagine a
+situation where someone skips filling in rows that have identical data. For
+example, we might know that the NA values in the date column below aren't truly
+unknown. Perhaps our lab technician just didn't want to write the same date over
+and over again. 
+```{r}
+raw_csv
+```
+\  
+
+In this case we can use the function `na.locf()` in the `zoo` package **or** the
+`fill()` function in `tidyr`.  Both of these functions will fill in missing values
+in a data frame by moving either forward or backward through its values.
+
+```{r}
+na.locf(object = raw_csv$test_date)
+```
+
+`fill()` is more suited to working directly with a data frame:
+```{r}
+fill(data = raw_csv, test_date)
+```
+\  
+
+**4. Working with duplicate data**  
+There are multiple ways to get duplicate rows from a data frame in R. `get_dupes()`
+from `janitor` is straightforward. It also appends a new column to your input
+data frame called dupe_count that indicates the number of rows duplicated for 
+each unique record.
+```{r}
+get_dupes(raw_csv)
+```
+\  
+
+We can also do something similar in base R using `duplicated()`. However, it
+has fewer bells and whistles. We can see which rows are duplicates:
+```{r}
+duplicated(raw_csv)
+```
+\  
+
+Note that this includes one less duplicate than `get_dupes()`. This function
+doesn't count the first entry as a duplicate, only the repeats.
+```{r}
+raw_csv[duplicated(raw_csv), ]
+```
+
+
+\  
+
+**5. Splitting rows based on a delimited value**  
+You may run into a situation where you have a variable that has multiple values
+within each of its rows. Perhaps this is a "Notes" column, for example. Depending
+on the situation you'll either want to put these in their own rows or columns. 
+That is doable using `separate()` or `separate_rows()` from tidyr.
+
+Use `separate()` to create new columns. We can specify the new column names with
+`into`.
+```{r}
+separate(data = raw_csv, col = notes, into = c("type", "location"), sep = ", ")
+```
+
+
+Alternatively, you can use `separate_rows()` to create new rows from the data
+instead.
+```{r}
+separate_rows(data = raw_csv, notes, sep = ", ") %>% head()
+
+```
+
+
+### Scripts
+
+So now your data is beautiful. But your script isn't! It is easy to treat a
+script as something that only needs to run, and doesn't need to be polished.
+Often this will work, too. We can write scripts that may be hard to read but
+will run if we ask them.
+
+If you're trying to make a reproducible analysis a script won't be
+very useful for the next user if they can't interpret it.
+
+One way to ensure some readability in scripts is to follow a style guide. For
+example, the tidyverse provides one here: https://style.tidyverse.org/ 
+
+This style guide goes into many specifics, which I won't rewrite here, but for
+example:
+
+**Names of objects should use underscores, not periods.**
+```{r}
+hour_sequence <- seq(from = 1, to = 24, by = 1)
+
+# NOT
+
+hour.sequence <- seq(from = 1, to = 24, by = 1)
+```
+
+**Operators should typically have spaces on either side.**
+```{r results=FALSE}
+filter(iris, Sepal.Width >= 3)
+
+# NOT
+
+filter(iris, Sepal.Width>=3)
+```
+
+**Long lines (> 80 characters) are bad news.** Avoid letting the code run longer
+than this on one line.
+```{r results='hide'}
+iris %>%
+  filter(Sepal.Width >= 3) %>%
+  select(Sepal.Width, Species) %>%
+  group_by(Species) %>%
+  summarise(mean = mean(Sepal.Width))
+
+# NOT
+
+iris %>% filter(Sepal.Width >= 3) %>% select(Sepal.Width, Species) %>% group_by(Species) %>% summarise(mean = mean(Sepal.Width))
+```
+
+Despite your best efforts you may find yourself missing some of the style points
+once you've finished a script. Have no fear! You can use the `lintr` package
+to check your script for style automatically.
+
+```{r eval=FALSE}
+lint("example_script.R")
+```
+
+Where "example_script.R" looks like
+```{r eval=FALSE}
+#This is an example script with some messy code
+
+iris.sepal=iris %>% select(Sepal.Length, Sepal.Width, Species)
+
+iris.petal.means <- iris %>% select(Petal.Length, Petal.Width, Species) %>% group_by(Species) %>% summarise(mean=mean(Petal.Length))
+```
+
+and the lintr output is  
+![](lintr-output.jpg)
+
+If you have specific aspects of style that you'd like to check, you can specify
+specific linters from within the `lint()` call. Available linters can be viewed
+using `?linters()`
+
+
+\  
+\  
+
+#### Sources:  
+https://style.tidyverse.org/index.html 
+

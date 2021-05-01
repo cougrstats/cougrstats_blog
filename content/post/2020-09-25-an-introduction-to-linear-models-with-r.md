@@ -1,6 +1,6 @@
 ---
 title: An introduction to linear models with R
-author: cougrstats
+author: Mikala Meize
 date: '2020-09-25'
 categories:
   - Introduction to R
@@ -39,14 +39,14 @@ Outcome variable: mtcars$mpg
 hist(mtcars$mpg)
 ```
 
-![fig1-hist](https://cougrstats.files.wordpress.com/2020/09/fig1-hist.png)
+![](https://cougrstats.files.wordpress.com/2020/09/fig1-hist.png)
 
 ```r
 #checking for outliers
 boxplot(mtcars$mpg)
 ```
 
-![fig2-boxplot](https://cougrstats.files.wordpress.com/2020/09/fig2-boxplot.png)
+![](https://cougrstats.files.wordpress.com/2020/09/fig2-boxplot.png)
 
 Predictor variable: mtcars$wt
 Checking for a linear relationship between outcome and predictor variables using a plot() code:
@@ -55,13 +55,13 @@ Checking for a linear relationship between outcome and predictor variables using
 plot(mtcars$mpg, mtcars$wt)
 ```
 
-![fig3-scatter](https://cougrstats.files.wordpress.com/2020/09/fig3-scatter.png)
+![](https://cougrstats.files.wordpress.com/2020/09/fig3-scatter.png)
 
 ```r
 scatter.smooth(mtcars$mpg, mtcars$wt)
 ```
 
-![fig4-scatterline](https://cougrstats.files.wordpress.com/2020/09/fig4-scatterline.png)
+![](https://cougrstats.files.wordpress.com/2020/09/fig4-scatterline.png)
 
 Just for some useful information - checking the strength of that linear relationship using correlations codes.
 Both of these codes give us the correlation between the variables, but cor.test() outputs the results of a significance test.
@@ -89,13 +89,9 @@ cor.test(mtcars$mpg, mtcars$wt) #correlation with significance test
 #### Code for single predictor linear model
 
 The code for a linear model using a single predictor follows the basic format given above.
-
   * Model type: lm()
-
   * Outcome: mpg
-
   * Predictor: Weight (wt)
-
   * Data: mtcars
 
 ```r
@@ -128,24 +124,17 @@ summary(mpg.model)
 ```
 
 #### Interpreting the results of a single predictor linear model
-
   * The F-test/Anova at the end of the results is statistically significant. This means our model with one predictor is stronger than a null model with no predictors.
-
   * The Multiple R-Squared value indicates that the predictor (weight) explains about 75% of the variance in the outcome (miles per gallon). The Adjusted R-Squared value has the same interpretation as the Multiple R-Squared value, but penalizes more complex models. As we increase predictors, the multiple R-squared is expected to increase simply because we added something else to explain the outcome; however, the adjusted R-squared value penalizes models because it's possible we've added a variable that does not actually increase the explanatory power of our model.
-
   * The predictor (weight) is statistically significant and the coefficient is negative. This matches the visual relationship in the plot() code from above. Simply put, as the weight of a car increases, the miles per gallon decreases.
 
 The format of an equation for a linear model is: Outcome = Intercept + Coefficient*Predictor
 If we put these values into an equation, it would look like this:
-
   * mpg = 37.2851 - 5.3445(weight)
 
 ### Linear models with two or more predictors
-
   * Outcome variable: mtcars$mpg
-
   * Predictor variable 1: mtcars$wt
-
   * Predictor variable 2: mtcars$hp
 
 The relationship between mpg and wt has not changed in the data, so when we add a predictor, we only run the linear checks and such on the second predictor.
@@ -155,13 +144,13 @@ Checking for a linear relationship between outcome and predictor variable 2 usin
 plot(mtcars$mpg, mtcars$hp)
 ```
 
-![fig5-scatter](https://cougrstats.files.wordpress.com/2020/09/fig5-scatter.png)
+![](https://cougrstats.files.wordpress.com/2020/09/fig5-scatter.png)
 
 ```r
 scatter.smooth(mtcars$mpg, mtcars$hp)
 ```
 
-![fig6-scatterline](https://cougrstats.files.wordpress.com/2020/09/fig6-scatterline.png)
+![](https://cougrstats.files.wordpress.com/2020/09/fig6-scatterline.png)
 
 Just for some useful information - checking the strength of that linear relationship using correlations codes.
 Both of these codes give us the correlation between the variables, but cor.test() outputs the results of a significance test.
@@ -189,13 +178,9 @@ cor.test(mtcars$mpg, mtcars$hp) #correlation with significance test
 #### Code for multiple predictor linear model
 
 The code for a linear model using a multiple predictor follows the basic format given above.
-
   * Model type: lm()
-
   * Outcome: mpg
-
   * Predictor(s): weight (wt) + horsepower (hp)
-
   * Data: mtcars
 
 ```r
@@ -229,17 +214,12 @@ summary(mpg.model2)
 ```
 
 #### Interpreting the results of a multiple predictor linear model
-
   * The F-test/Anova at the end of the results is statistically significant. This means our model with two predictors is stronger than a null model with no predictors.
-
   * We use the Adjusted R-Squared value here because we've increased the complexity of our model by adding another predictor. In this case, our model now accounts for about 81% of the variance in miles per gallon. This is an increase over the previous model with only a single predictor.
-
   * Weight (wt), as a predictor, is still statistically significant and the coefficient is negative. As a car's weight increases, the miles per gallon decreases, _holding horsepower constant_ (or controlling for horsepower as it's often written).
-
   * Horsepower (hp), as a predictor, is statistically significant and the coefficient is negative. As a car's horsepower increases, the miles per gallon decreases, _holding weight constant_ (or controlling for weight).
 
 If we put these values into an equation, it would look like this:
-
   * mpg = 37.22727 - 3.87783(weight) - 0.03177(horsepower)
 
 ### Linear Models with Binary/Dichotomous Predictors (Dummy variables)
@@ -280,19 +260,13 @@ summary(mpg.model3)
 ```
 
 #### Interpreting the results of a linear model using binary/dichotomous variables
-
   * The F-test/Anova at the end of the results is statistically significant. This means our model with these predictors is stronger than a null model with no predictors.
-
   * We use the Adjusted R-Squared value here because we've increased the complexity of our model by adding another predictor. In this case, our model now accounts for about 82% of the variance in miles per gallon. This is a slight increase over the previous model with two predictors.
-
   * Weight (wt), as a predictor, is still statistically significant and the coefficient is negative. As a car's weight increases, the miles per gallon decreases, _holding horsepower and transmission type constant_ (or controlling for horsepower and transmission type, as it's often written).
-
   * Horsepower (hp), as a predictor, is statistically significant and the coefficient is negative. As a car's horsepower increases, the miles per gallon decreases, _holding weight and transmission type constant_ (or controlling for weight and transmission type).
-
   * Transmission type (am) is not a statistically significant predictor. This means that there is not a statistically significant difference between manual or automatic transmission miles per gallon values, controlling for weight and horsepower. If this were significant, we would interpret the coefficient as the increase in miles per gallon when the variable is 1 (when it's a manual transmission); this is not an increase as the transmission type increases, because that doesn't make sense when there are only two options.
 
 If we put these values into an equation, it would look like this:
-
   * mpg = 34.002875 - 2.878575(weight) - 0.037479(horsepower) + 2.08371(transmission type)
 
 ### Linear Models With Categorical Predictors (More Than Two Options)
@@ -307,11 +281,8 @@ summary(penguins$species)
 ```
 
 Let's predict bill length with species.
-
   * Outcome: Bill length (bill_length_mm)
-
   * Predictor: species
-
   * Data: penguins
 
 If your categorical variable is coded as numeric values, you can use the as.factor() code to have R treat it like a factor rather than a set of related numbers. This is common when using months as a variable.
@@ -429,17 +400,12 @@ summary(bill.model3)
 As you can see, each of these models produces the same results as the reference category in all three is "Adelie."
 
 #### Interpreting the results of a linear model using categorical variables
-
   * The F-test/Anova at the end of the results is statistically significant. This means our model with these predictors is stronger than a null model with no predictors.
-
   * The multiple r-squared value indicates that about 71% of the variance in bill length of a penguin is explained by the species.
-
   * The Chinstrap category is statistically significant; the Chinstrap penguins have a longer bill length compared to Adelie penguins.
-
   * The Gentoo category is statistically significant; the Gentoo penguins have a longer bill length compared to the Adelie penguins.
 
 If we put these values into an equation, it would look like this:
-
   * bill length = 38.7914 + 10.0424(Chinstrap) + 8.7135(Gentoo)
 
 The intercept then, is the average length of the Adelie penguin bill because the Chinstrap and Gentoo values in the equation are both zero (0) when looking at Adelie penguins.
@@ -670,7 +636,7 @@ plot(mtcars$wt, (residuals(mpg.model2)))
 plot(mtcars$hp, (residuals(mpg.model2)))
 ```
 
-![fig8-dualassumptions](https://cougrstats.files.wordpress.com/2020/09/fig8-dualassumptions.png)
+![](https://cougrstats.files.wordpress.com/2020/09/fig8-dualassumptions.png)
 
 ```r
 ###add a loess curve
@@ -678,6 +644,6 @@ scatter.smooth(mtcars$wt, residuals(mpg.model2))
 scatter.smooth(mtcars$hp, residuals(mpg.model2))
 ```
 
-![fig9-dualassumptions2](https://cougrstats.files.wordpress.com/2020/09/fig9-dualassumptions2.png)
+![](https://cougrstats.files.wordpress.com/2020/09/fig9-dualassumptions2.png)
 
 We don't want to see a trend in this plot. If it's random we've met the linearity assumption. At first, these plots look random. After adding a trend line, it's possible there might be an underlying pattern that wasn't captured in the model. You could try transforming the predictor variables to account for this.

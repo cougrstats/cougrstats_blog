@@ -1,6 +1,6 @@
 ---
 title: SEM Lesson for R Working Group
-author: cougrstats
+author: Ben Lee
 date: '2019-12-03'
 categories:
   - Package Introductions
@@ -59,7 +59,7 @@ ggplot(sem, aes(x=Treat, y = inf.ratio)) + geom_boxplot() ->p4
 grid.arrange(p1,p2,p3,p4, ncol=2)
 ```
 
-![sem1](https://cougrstats.files.wordpress.com/2019/12/sem1.png)
+![](https://cougrstats.files.wordpress.com/2019/12/sem1.png)
 
 Looking at these boxplots, its pretty clear that lethal predators reduce the populations of aphid adults and nymphs, as expected. It also looks like both predator treatments increase the movement of aphid adults, **and** increase the proportion of plants infected in the mesocosm! But we know that the predators can't transmit the virus themselves, so this has to be an indirect effect mediated by **something** that they're doing to the aphids.
 
@@ -74,7 +74,7 @@ ggplot(sem,aes(x = addist, y = inf.ratio)) + geom_smooth(method='lm') -> a3
 grid.arrange(a1,a2,a3, ncol = 2)
 ```
 
-![sem_fig2](https://cougrstats.files.wordpress.com/2019/12/sem_fig2.png)
+![](https://cougrstats.files.wordpress.com/2019/12/sem_fig2.png)
 
 Looking at these simple models, it seems likely that aphid populaton or movement are influential on virus prevalence in this system.
 
@@ -82,7 +82,7 @@ Using our predictions and the direction of effects from these outputs, lets thro
 
 #### Our A priori model
 
-![](PIC/apriori.png)![apriori](https://cougrstats.files.wordpress.com/2019/12/apriori.png)
+![](PIC/apriori.png)![](https://cougrstats.files.wordpress.com/2019/12/apriori.png)
 
 This network model shows what component linear models we're going to include in our initial analysis; predators affect aphid population and movement, and population and movement affect the ratio of plants infected with the virus. The whole point of running the path analysis is to determine which of these predictors are significant, so this is subject to change as we refine the model.
 
@@ -116,7 +116,7 @@ Disclaimer: Since the piecewisesem summary output has a lot of additional garbag
 ###SEM 1
 summary(sem.1, standardize = "none", conserve = TRUE)
 ![](PIC/sem1.jpg)
-![sem1](https://cougrstats.files.wordpress.com/2019/12/sem1.jpg)
+![](https://cougrstats.files.wordpress.com/2019/12/sem1.jpg)
 
 There's a ton of information here so let's go through it step-by-step.
 
@@ -133,7 +133,7 @@ Here we specify our correlated error, which we'll include for all the remaining 
 summary(update(sem.1, totad %~~% totnym), standardize="none")
 
 ![](PIC/sem1update.jpg)
-![sem1update](https://cougrstats.files.wordpress.com/2019/12/sem1update.jpg)
+![](https://cougrstats.files.wordpress.com/2019/12/sem1update.jpg)
 
 While our AIC improved significantly, this model still has room to improve, so lets modify our paths.
 
@@ -153,7 +153,7 @@ sem.2 <- psem(ad.pop1, nym.pop1, ad.dist1, inf.rat2)
 summary(update(sem.2, totad %~~% totnym), standardize= "none")
 
 ![](PIC/sem2.jpg)
-![sem2](https://cougrstats.files.wordpress.com/2019/12/sem2.jpg)
+![](https://cougrstats.files.wordpress.com/2019/12/sem2.jpg)
 
 The AIC has improved slightly, and our new paths show that we may want to include the effect of "Risk" predators on nymph populations and the inf.ratio. Lets add those to our model.
 
@@ -168,7 +168,7 @@ sem.3 <- psem(ad.pop1, nym.pop2, ad.dist1, inf.rat3)
 summary(update(sem.3, totad %~~% totnym), standardize= "none")
 
 ![](PIC/sem3nostandard.jpg)
-![sem3nostandard](https://cougrstats.files.wordpress.com/2019/12/sem3nostandard.jpg)
+![](https://cougrstats.files.wordpress.com/2019/12/sem3nostandard.jpg)
 
 The model appears to fit rather well, with our AIC at 38.8, all significant paths included, and most of the variation explained.
 
@@ -179,10 +179,10 @@ So we've got our path analysis finished up, but there's still a need to calculat
 summary(update(sem.3, totad %~~% totnym), standardize= "scale")
 
 ![](PIC/sem3.jpg)
-![sem3](https://cougrstats.files.wordpress.com/2019/12/sem3.jpg)
+![](https://cougrstats.files.wordpress.com/2019/12/sem3.jpg)
 
 Now we've got our completed path analysis, R2 values for each outcome, and standardized effect sizes of each predictor. Our finalized model therefore looks something like this
 
-![](PIC/finalmodel.png)![finalmodel](https://cougrstats.files.wordpress.com/2019/12/finalmodel.png)
+![](PIC/finalmodel.png)![](https://cougrstats.files.wordpress.com/2019/12/finalmodel.png)
 
 This model tells a very different story from what our initial univariate models suggested. Here we found that despite a significant effect of predators on aphid populations and movement on the number of plants infected, there appears to be some unincluded way that predators influenced infection. Later experiments found this was likely due to predators moving aphids higher up on plants, where new tissue was more susceptible to virus transmission. However, since this was not included in our model, that hidden effect was highlighted by the direct effect of predators on infection revealed by our SEM.

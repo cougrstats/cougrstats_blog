@@ -1,11 +1,13 @@
 ---
 title: Non-metric Multidimensional Scaling (NMDS) in R
-author: cougrstats
+author: Michael Meyer
 date: '2019-12-11'
 tags:
   - NMDS
 slug: non-metric-multidimensional-scaling-nmds-in-r
 ---
+
+_By Michael Meyer_
 
 # Summary
 
@@ -23,20 +25,20 @@ Before diving into the details of creating an NMDS, I will discuss the idea of "
 
 We can demonstrate this point looking at how sepal length varies among different iris species.
 
-![plot of chunk unnamed-chunk-1](http://cougrstats.files.wordpress.com/2019/12/unnamed-chunk-1-1.png)
+![](http://cougrstats.files.wordpress.com/2019/12/unnamed-chunk-1-1.png)
 
 From the above density plot, we can see that each species appears to have a characteristic mean sepal length. In other words, it appears that we may be able to distinguish species by how the distance between mean sepal lengths compares. In doing so, we can determine which species are more or less similar to one another, where a lesser distance value implies two populations as being more similar. In the case of sepal length, we see that virginica and versicolor have means that are closer to one another than virginica and setosa.
 
 Similarly, we may want to compare how these same species differ based off sepal length as well as petal length.
 
-![plot of chunk unnamed-chunk-2](http://cougrstats.files.wordpress.com/2019/12/unnamed-chunk-2-1.png)
+![](http://cougrstats.files.wordpress.com/2019/12/unnamed-chunk-2-1.png)
 
 Here, we have a 2-dimensional density plot of sepal length and petal length, and it becomes even more evident how distinct the three species are based off each species's characteristic morphologies. The point within each species density
 cloud is located at the mean sepal length and petal length for each species. The black line between points is meant to show the "distance" between each mean.
 
 If we wanted to calculate these distances, we could turn to the Pythagorean Theorem.
 
-![euclidean_distance](https://cougrstats.files.wordpress.com/2019/12/euclidean_distance.png)
+![](https://cougrstats.files.wordpress.com/2019/12/euclidean_distance.png)
 
 In doing so, we could effectively collapse our two-dimensional data (i.e., Sepal Length and Petal Length) into a one-dimensional unit (i.e., Distance). We see that virginica and versicolor have the smallest distance metric, implying that these two species are more morphometrically similar, whereas setosa and virginica have the largest distance metric, suggesting that these two species are most morphometrically different. Finally, we also notice that the points are arranged in a two-dimensional space, concordant with this distance, which allows us to visually interpret points that are closer together as more similar and points that are farther apart as less similar.
 
@@ -105,17 +107,17 @@ species_3
 
 If we were to produce the Euclidean distances between each of the sites, it would look something like this:
 
-![euclidean_distance_second](https://cougrstats.files.wordpress.com/2019/12/euclidean_distance_second.png)
+![](https://cougrstats.files.wordpress.com/2019/12/euclidean_distance_second.png)
 
 So, based on these calculated distance metrics, sites A and B are most similar. This conclusion, however, may be counter-intuitive to most ecologists. An ecologist would likely consider sites A and C to be more similar as they contain the same species compositions but differ in the magnitude of individuals. So, an ecologist may require a slightly different metric, such that sites A and C are represented as being more similar.
 
 For this reason, most ecologists use the Bray-Curtis similarity metric, which is defined as:
 
-![bray_formula](https://cougrstats.files.wordpress.com/2019/12/bray_formula.png)
+![](https://cougrstats.files.wordpress.com/2019/12/bray_formula.png)
 
 Using a Bray-Curtis similarity metric, we can recalculate similarity between the sites.
 
-![bray_distances](https://cougrstats.files.wordpress.com/2019/12/bray_distances.png)
+![](https://cougrstats.files.wordpress.com/2019/12/bray_distances.png)
 
 Our analysis now shows that sites A and C are most similar, whereas A and C are most dissimilar from B. In general, this is congruent with how an ecologist would view these systems.
 
@@ -126,13 +128,9 @@ Once distance or similarity metrics have been calculated, the next step of creat
 In most cases, researchers try to place points within two dimensions. However, it is possible to place points in 3, 4, 5....n dimensions. Regardless of the number of dimensions, the characteristic value representing how well points fit within the specified number of dimensions is defined by "Stress". While this tutorial will not go into the details of how stress is calculated, there are loose and often field-specific guidelines for evaluating if stress is acceptable for interpretation.
 
 In the case of ecological and environmental data, here are some general guidelines:
-
   * Stress > 0.2: Likely not reliable for interpretation
-
   * Stress  0.15: Likely fine for interpretation
-
   * Stress  0.1: Likely good for interpretation
-
   * Stress < 0.1: Likely great for interpretation
 
 # Creating an NMDS in R
@@ -253,7 +251,7 @@ ggplot() +
         text = element_text(size = 24))
 ```
 
-![plot of chunk unnamed-chunk-6](http://cougrstats.files.wordpress.com/2019/12/unnamed-chunk-6-1.png)
+![](http://cougrstats.files.wordpress.com/2019/12/unnamed-chunk-6-1.png)
 
 ## Interpretation
 

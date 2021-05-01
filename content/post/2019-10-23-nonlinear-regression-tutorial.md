@@ -1,6 +1,6 @@
 ---
 title: Nonlinear regression tutorial
-author: cougrstats
+author: Abby Hudak
 date: '2019-10-23'
 categories:
   - Research Profiles
@@ -13,11 +13,8 @@ slug: nonlinear-regression-tutorial
 _By Abby Hudak_
 
 When relationships between variables is not linear you can try:
-
 1) transforming data to linearize the relationship
-
 2) fit non-linear functions to data (use nls example)
-
 3) fit polynomial or spline models to data (use growthrates package example)
 
 **linear regression:** dependent variable = constant + parameter x indepenent variable + p x IV +....
@@ -70,7 +67,7 @@ plot(x,y)
 lines(x,predict(m),col="red",lwd=3)
 ```
 
-![nonlinear1](https://cougrstats.files.wordpress.com/2019/10/nonlinear1.png)
+![](https://cougrstats.files.wordpress.com/2019/10/nonlinear1.png)
 
 ```r
 #simulate some data, this without a priori knowledge of the parameter value
@@ -106,7 +103,7 @@ cor(y,predict(m1))
 lines(x,predict(m1),col="red",lty=2,lwd=3)
 ```
 
-![nonlinear2](https://cougrstats.files.wordpress.com/2019/10/nonlinear2.png)
+![](https://cougrstats.files.wordpress.com/2019/10/nonlinear2.png)
 
 **using differential equations**
 
@@ -133,7 +130,7 @@ out <- ode(N_ini, times, log_growth, pars)
 plot(out)
 ```
 
-![nonlinear3](https://cougrstats.files.wordpress.com/2019/10/nonlinear3.png)
+![](https://cougrstats.files.wordpress.com/2019/10/nonlinear3.png)
 
 ```r
 #add some random variation to it
@@ -195,7 +192,7 @@ cor(N_obs,predict(m4))
 lines(times,predict(m4),col="red",lty=2,lwd=3)
 ```
 
-![nonlinear4](https://cougrstats.files.wordpress.com/2019/10/nonlinear4.png)
+![](https://cougrstats.files.wordpress.com/2019/10/nonlinear4.png)
 
 **Maximum likelihood approach** see nlme package. A bit more powerful and reliable method than nls.
 
@@ -218,7 +215,7 @@ data$ID<-c(rep(1:10,20))
 plot(time,y)
 ```
 
-![nonlinear5](https://cougrstats.files.wordpress.com/2019/10/nonlinear5.png)
+![](https://cougrstats.files.wordpress.com/2019/10/nonlinear5.png)
 
 ```r
 splitted.data <- multisplit(data, c("ID"))
@@ -264,7 +261,7 @@ fit3<-fit_growthmodel(grow_logistic, p=p, time=data$time, y=data$y)
 lines(fit3, col="red", lwd=3)
 ```
 
-![nonlinear6](https://cougrstats.files.wordpress.com/2019/10/nonlinear6.png)
+![](https://cougrstats.files.wordpress.com/2019/10/nonlinear6.png)
 
 ```r
 summary(fit3)
