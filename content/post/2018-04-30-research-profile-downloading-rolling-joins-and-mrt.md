@@ -14,7 +14,7 @@ tags:
 slug: research-profile-downloading-rolling-joins-and-mrt
 ---
 
-<code class="r">library(downloader)
+
 ```r
 library(tidyverse)
 library(dplyr)
