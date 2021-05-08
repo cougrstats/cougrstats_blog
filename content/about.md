@@ -18,3 +18,5 @@ Contact us by joining our [list-serv](https://lists.wsu.edu/mailman/listinfo/r_w
 + Matt Brousil (current co-organizer):  matthew.brousil AT wsu DOT edu
 
 You can learn more and find our presentation schedule at the dedicated CEREO website: [https://cereo.wsu.edu/r-working-group/](https://cereo.wsu.edu/r-working-group/) 
+
+If you're looking for the previous version of our blog, you can find it [here](https://cougrstats.wordpress.com/). All posts prior to May 2021 exist on both blogs.
