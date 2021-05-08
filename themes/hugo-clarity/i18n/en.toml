@@ -16,6 +16,9 @@ other = "Featured Posts"
 [recent_posts]
 other = "Recent Posts"
 
+[twitter_feed]
+other = "Twitter Activity"
+
 [404_title]
 other = "Lost"
 

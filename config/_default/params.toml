@@ -16,7 +16,7 @@ ga_analytics = "XXXXXXXXXX"
 numberOfTagsShown = 14 # Applies for all other default & custom taxonomies. e.g categories, brands see https://gohugo.io/content-management/taxonomies#what-is-a-taxonomy
 
 # will be used on share >> twitter, facebook, linkedin
-fallBackOgImage = "images/thumbnail.png"
+fallBackOgImage = "icons/mstile-150x150.png"
 
 # sets the maximum number of lines per codeblock. The codeblock will however be scrollable and expandable.
 codeMaxLines = 100
@@ -56,7 +56,7 @@ enforceLightMode = false
 # footerLogo = "icons/copy.svg"
 
 # Text for the languages menu.
-languageMenuName = "🌐"
+# languageMenuName = "🌐"
 
 # Title separator, default to |.
 # titleSeparator = "|"
@@ -65,10 +65,10 @@ languageMenuName = "🌐"
 # comments = false
 
 # Maximum number of recent posts.
-# numberOfRecentPosts = 8
+numberOfRecentPosts = 5
 
 # Maximum number of featured posts.
-# numberOfFeaturedPosts = 8
+numberOfFeaturedPosts = 3
 
 # Date format. Checkout https://gohugo.io/functions/format/#hugo-date-and-time-templating-reference for details.
 # dateFormat = "2006-01-02" # Default to "Jan 2, 2006".
@@ -76,7 +76,7 @@ languageMenuName = "🌐"
 
 # The year when ths website was created, this value is used in the copyright
 # notice of the footer.
-# since = 2016
+since = 2021
 
 # tell hugo where you store your icons e.g favicons. This is useful if you're using an apache server and there are conflicts >> see issue https://github.com/chipzoller/hugo-clarity/issues/74. If this is applicable to you, be sure to copy the contents of https://github.com/chipzoller/hugo-clarity/tree/master/static/icons to your preferred icons directory 
 iconsDir = "icons/" # without a leading forward slash
