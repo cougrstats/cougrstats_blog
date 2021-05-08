@@ -139,21 +139,21 @@ The basic `tmap` syntax includes a spatial object in `tm_shape` plus a layer tha
 tm_shape(nz) + tm_fill()
 ```
 
-![plot of chunk unnamed-chunk-4](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-4-13.png)
+![](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-4-13.png)
 
 ```r
 # Add border layer to nz shape
 tm_shape(nz) + tm_borders()
 ```
 
-![plot of chunk unnamed-chunk-4](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-4-23.png)
+![](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-4-23.png)
 
 ```r
 # Add fill and border layers to nz shape
 tm_shape(nz) + tm_fill() + tm_borders()
 ```
 
-![plot of chunk unnamed-chunk-4](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-4-33.png)
+![](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-4-33.png)
 
 `tmap` uses the "grammar of graphics" similar to `ggplot`. You can create maps by adding layers on top of each other.
 
@@ -164,7 +164,7 @@ map_nz + # note that you can store maps as objects
   tm_shape(nz_elev) + tm_raster(alpha = 0.7)
 ```
 
-![plot of chunk unnamed-chunk-5](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-5-12.png)
+![](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-5-12.png)
 
 # Data-defined plotting
 
@@ -174,7 +174,7 @@ It's also simple to color your features by a variable.
 tm_shape(nz)+tm_fill(col='REGC2017_NAME')
 ```
 
-![plot of chunk unnamed-chunk-6](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-6-13.png)
+![](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-6-13.png)
 
 Want to change the colors? check out the nifty `tmaptools::palette_explorer()`
 
@@ -182,7 +182,7 @@ Want to change the colors? check out the nifty `tmaptools::palette_explorer()`
 tm_shape(nz)+tm_fill(col='REGC2017_NAME', palette='Set1')
 ```
 
-![plot of chunk unnamed-chunk-8](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-8-13.png)
+![](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-8-13.png)
 
 You can use `tm_layout` to adjust layout options, like margins. Here is an example where I made more space for the legend.
 
@@ -199,7 +199,7 @@ tm_shape(nz)+
   tm_style_beaver()
 ```
 
-![plot of chunk unnamed-chunk-9](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-9-13.png)
+![](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-9-13.png)
 
 # Facetting based on data categories
 
@@ -215,7 +215,7 @@ tm_shape(nz)+
   tm_facets(by='let')
 ```
 
-![plot of chunk unnamed-chunk-10](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-10-13.png)
+![](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-10-13.png)
 
 # Arrange different types of plots next to each other
 
@@ -227,7 +227,7 @@ tmap_arrange(map_nz + tm_compass() + tm_scale_bar() ,
              ncol=2)
 ```
 
-![plot of chunk unnamed-chunk-11](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-11-12.png)
+![](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-11-12.png)
 
 # inset maps
 
@@ -250,7 +250,7 @@ auckland_elev <-
 auckland_elev
 ```
 
-![plot of chunk unnamed-chunk-12](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-12-13.png)
+![](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-12-13.png)
 
 ```r
 # make the overview map tha tincludes a box outlining our subset we are highlighting
@@ -260,7 +260,7 @@ bigmap <- map_nz +
 bigmap
 ```
 
-![plot of chunk unnamed-chunk-12](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-12-23.png)
+![](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-12-23.png)
 
 ```r
 # make a viewport. think of this as a window in the bigmap through whcih we can see the elevation inset
@@ -271,7 +271,7 @@ bigmap
 print(auckland_elev, vp = auckland_vp)
 ```
 
-![plot of chunk unnamed-chunk-12](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-12-32.png)
+![](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-12-32.png)
 
 ```r
 # save your map using standard graphic functions - pdf()...dev.off() or save_tmap()
@@ -312,7 +312,7 @@ ggplot()+
   coord_sf() #handles projections!
 ```
 
-![plot of chunk unnamed-chunk-14](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-14-1.png)
+![](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-14-1.png)
 
 ## the old way
 
@@ -333,7 +333,7 @@ ggplot()+
   coord_fixed(ratio = 1) #you need to make sure things are in the right projection
 ```
 
-![plot of chunk unnamed-chunk-15](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-15-1.png)
+![](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-15-1.png)
 
 ```r
 nz_elev_df <- raster::as.data.frame(nz_elev,xy=T)
@@ -345,7 +345,7 @@ ggplot()+
   coord_fixed(ratio=1)
 ```
 
-![plot of chunk unnamed-chunk-16](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-16-13.png)
+![](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-16-13.png)
 
 ```r
 # normally you can use ggsn package to add north arrow and scale bar but it's not working well right now, maybe because I'm using the dev ggplot
@@ -384,14 +384,14 @@ cowplot::ggdraw(gidaho)+
   cowplot::draw_plot(overview,0.5,0.5,.2,.2,scale=1)
 ```
 
-![plot of chunk unnamed-chunk-17](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-17-13.png)
+![](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-17-13.png)
 
 ```r
 # combine the two ggplot objects by placing them side by side
 cowplot::plot_grid(gidaho,overview)
 ```
 
-![plot of chunk unnamed-chunk-17](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-17-2.png)
+![](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-17-2.png)
 
 # Miscellaneous
 
@@ -450,7 +450,7 @@ tm_shape(id2,
   tm_borders(alpha=0.5)
 ```
 
-![plot of chunk unnamed-chunk-18](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-18-12.png)
+![](http://cougrstats.files.wordpress.com/2018/04/unnamed-chunk-18-12.png)
 
 # Additional Resources
 

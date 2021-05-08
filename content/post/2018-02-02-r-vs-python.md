@@ -1,6 +1,6 @@
 ---
 title: R "vs" Python
-author: cougrstats
+author: A. Leah Zulas and Stephanie Labou
 date: '2018-02-02'
 tags:
   - guest speaker

@@ -1,6 +1,6 @@
 ---
 title: Date and Time data in R
-author: cougrstats
+author: Stephanie Labou
 date: '2018-02-21'
 categories:
   - Package Introductions

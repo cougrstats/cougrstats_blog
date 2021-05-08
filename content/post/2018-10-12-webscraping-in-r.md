@@ -10,9 +10,7 @@ slug: webscraping-in-r
 These are the three functions that are used during this presentation for webscraping. These are the only functions that are used from the "rvest" package. Everything else in this presentation is base R.
 
   * read_html()
-
   * html_nodes()
-
   * html_table()
 
 # What is Web Scraping?
@@ -29,7 +27,7 @@ HTML stands for HyperText Markup Language. All HTML pages are built using the sa
 
 # The HTML Tree
 
-![flowchat](https://cougrstats.files.wordpress.com/2018/10/flowchat.png)
+![](https://cougrstats.files.wordpress.com/2018/10/flowchat.png)
 
 # Information to Gather
 
@@ -241,10 +239,10 @@ lisa.df <- voting.record(lisa, 2)
 
 # View Cathy's Voting Distribution
 
-![graph1](https://cougrstats.files.wordpress.com/2018/10/graph1.png)
+![](https://cougrstats.files.wordpress.com/2018/10/graph1.png)
 
 # View Lisa's Voting Distribution
 
-![graph2](https://cougrstats.files.wordpress.com/2018/10/graph2.png)
+![](https://cougrstats.files.wordpress.com/2018/10/graph2.png)
 
 There is so much more that can be done with webscraping, but this code should be enough to get you up and running using rvest to scrape.

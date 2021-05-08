@@ -1,10 +1,9 @@
 ---
 aliases:
 - about-us
-- about-hugo
 - contact
-author:
-date: "2021-04-28"
+author: cougrstats
+date: 
 description: WSU's community-run home for R programming resources
 title: About
 ---

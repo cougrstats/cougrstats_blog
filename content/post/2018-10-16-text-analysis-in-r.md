@@ -1,9 +1,11 @@
 ---
 title: Text Analysis in R
-author: cougrstats
+author: Michael F. Meyer
 date: '2018-10-16'
 slug: text-analysis-in-r
 ---
+
+_By Michael F. Meyer_
 
 **For the reader**:
 
@@ -11,7 +13,7 @@ This document is to serve as a tutorial for the [R Working Group](https://cereo.
 
 For more information, please contact [Michael F. Meyer](https://labs.wsu.edu/hampton/people/michael-meyer/)
 
-#For BeginneRs
+# For BeginneRs
 
 There are three main takeaways from this tutorial. You will have learned:
 
@@ -337,7 +339,7 @@ theme(legend.position = "none") + theme(plot.title = element_text(size = 20), st
 yearplot.systems
 ```
 
-![plot of chunk unnamed-chunk-12](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-12-1.png)
+![](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-12-1.png)
 
 **Multiple systems**
 
@@ -368,7 +370,7 @@ system.div <- ggplot(richness.orig, aes(as.factor(PY), as.factor(RICHNESS), size
 system.div
 ```
 
-![plot of chunk unnamed-chunk-13](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-13-1.png)
+![](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-13-1.png)
 
 **Using Bibliometrix for text analysis**
 
@@ -395,7 +397,7 @@ df.current <- convert2df(df.orig, dbsource = "isi", format = "plaintext")
 plot(x = results, k = 10, pause = FALSE)
 ```
 
-![plot of chunk unnamed-chunk-14](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-1.png)![plot of chunk unnamed-chunk-14](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-2.png)![plot of chunk unnamed-chunk-14](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-3.png)![plot of chunk unnamed-chunk-14](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-4.png)![plot of chunk unnamed-chunk-14](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-5.png)
+![](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-1.png)![](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-2.png)![](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-3.png)![](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-4.png)![](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-5.png)
 
 ```r
 ### Bibliometrix can help us look at author collaboration networks. Just put in the Bibliometrix
@@ -409,7 +411,7 @@ net <- networkPlot(NetMatrix, normalize = "salton", weighted = NULL, n = 100, Ti
     type = "kamada", size = 5, size.cex = T, remove.multiple = TRUE, labelsize = 0.8, label.n = 10, label.cex = F)
 ```
 
-![plot of chunk unnamed-chunk-14](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-6.png)
+![](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-6.png)
 
 ```r
 ### Similar formulas can be used to build co-citatin networks Two papers are considerd to be co-cited
@@ -421,7 +423,7 @@ net <- networkPlot(NetMatrix, normalize = "salton", weighted = NULL, n = 10, Tit
     label.cex = F)
 ```
 
-![plot of chunk unnamed-chunk-14](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-7.png)
+![](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-7.png)
 
 ```r
 ### We can also look at a conceptual structure plot, where we are basically looking at associations
@@ -430,7 +432,7 @@ CS <- conceptualStructure(df.current, field = "ID", method = "MCA", minDegree = 
     labelsize = 10, documents = 10)
 ```
 
-![plot of chunk unnamed-chunk-14](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-8.png)![plot of chunk unnamed-chunk-14](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-9.png)![plot of chunk unnamed-chunk-14](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-10.png)
+![](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-8.png)![](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-9.png)![](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-10.png)
 
 ```r
 ### We can also look at the direct historical association with a given publication by creating a
@@ -442,7 +444,7 @@ histResults <- histNetwork(df.current, min.citations = 20, sep = ".  ")
 net <- histPlot(histResults, n = 10, size = 10, labelsize = 5, size.cex = TRUE, arrowsize = 0.5, color = TRUE)
 ```
 
-![plot of chunk unnamed-chunk-14](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-11.png)
+![](http://cougrstats.files.wordpress.com/2018/10/unnamed-chunk-14-11.png)
 
 ```r
 ##

@@ -1,6 +1,6 @@
 ---
 title: Webscraping for Research
-author: cougrstats
+author: Brad Luff
 date: '2018-04-30'
 categories:
   - Research Profiles
@@ -28,38 +28,38 @@ Let's view the webpage we will use as an example...
 ### Try rvest
 
 This is a package for R that should download the webpage as html for further manipulation.
+```r
+ # Load the library
+if(!require(rvest)){
+    install.packages("rvest")
+    library(rvest)
+}
 
-    # Load the library
-    if(!require(rvest)){
-        install.packages("rvest")
-        library(rvest)
-    }
+## Loading required package: rvest
 
-    ## Loading required package: rvest
+## Warning: package 'rvest' was built under R version 3.4.4
 
-    ## Warning: package 'rvest' was built under R version 3.4.4
+## Loading required package: xml2
 
-    ## Loading required package: xml2
+# get the webpage
+stevens <- read_html('https://www.stevenspass.com/site/mountain/reports/snow-and-weather-report/@@snow-and-weather-report')
 
-    # get the webpage
-    stevens <- read_html('https://www.stevenspass.com/site/mountain/reports/snow-and-weather-report/@@snow-and-weather-report')
+# Get the current header information
+temperature <- html_nodes(stevens, xpath = '//div/header/div/div/div/div/a/span/span[@class="header-stats-value"]/text()')
+# Select only the temperature
+temperature <- as.character(temperature[1])
+# Strip the temperature down to the numeric digits
+temperature <- gsub(" ", "", temperature)
+temperature <- gsub("\n", "", temperature)
+temperature <- gsub("Â°", "", temperature)
 
-    # Get the current header information
-    temperature <- html_nodes(stevens, xpath = '//div/header/div/div/div/div/a/span/span[@class="header-stats-value"]/text()')
-    # Select only the temperature
-    temperature <- as.character(temperature[1])
-    # Strip the temperature down to the numeric digits
-    temperature <- gsub(" ", "", temperature)
-    temperature <- gsub("\n", "", temperature)
-    temperature <- gsub("Â°", "", temperature)
+# Get the amount of snow that fell in the last 24 hours
+snow24 = as.character(html_nodes(stevens, xpath = '//div/div/div/div/div/main/div/div[3]/div[2]/div/div/div[1]/text()'))
+# Strip the inches symbol from the snowfall value
+snow24 <- gsub("â<u>³", "", snow24)
 
-    # Get the amount of snow that fell in the last 24 hours
-    snow24 = as.character(html_nodes(stevens, xpath = '//div/div/div/div/div/main/div/div[3]/div[2]/div/div/div[1]/text()'))
-    # Strip the inches symbol from the snowfall value
-    snow24 <- gsub("â<u>³", "", snow24)
+# Print the report we just scraped
+cat("The temperature at Stevens Pass is",temperature, "F and in the last 24 hours there has been", snow24, "inches of snow!")
+</u>
 
-    # Print the report we just scraped
-    cat("The temperature at Stevens Pass is",temperature, "F and in the last 24 hours there has been", snow24, "inches of snow!")
-    </u>
-
-    ## The temperature at Stevens Pass is 45° F and in the last 24 hours there has been 2<U+2033> inches of snow!
+## The temperature at Stevens Pass is 45° F and in the last 24 hours there has been 2<U+2033> inches of snow!

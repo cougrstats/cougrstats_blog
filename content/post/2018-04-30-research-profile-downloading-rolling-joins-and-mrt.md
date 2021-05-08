@@ -1,6 +1,6 @@
 ---
 title: 'Research Profile: Downloading, Rolling Joins, and MRT'
-author: cougrstats
+author: Stefanie Watson
 date: '2018-04-30'
 categories:
   - Research Profiles
@@ -29,7 +29,7 @@ library(vegan)
 
 ## Getting Data
 
-_You can download the species subset for this research profile [here](https://s3.wp.wsu.edu/uploads/sites/95/2018/04/speciesSub.csv). Other data is downloaded from Canada using the downloader package. _
+_You can download the species subset for this research profile [here](https://s3.wp.wsu.edu/uploads/sites/95/2018/04/speciesSub.csv). Other data is downloaded from Canada using the downloader package._
 
 The environmental data that we are using is all freely available through the national data buoy center. First, you have to download the zipped file to the correct location (use mode 'wb' to download correctly). The URL should be one that you can copy/paste into your address bar and will immediately start a download. In this case, this was not the same as the URL displayed in the address bar. I had to hover my mouse over the download to get the correct URl for Windows 10. You will know you have the correct URL when you put it into the address bar and it immediately starts a download instead of taking you to a webpage. Then, you have to unzip the file into a folder and read the csv into R. I have used locations on my computer, but you can create a temp file if you are unsure where to save.
 
@@ -176,7 +176,7 @@ Now we can make our first MRT. The first one that we are making is based on Eucl
 comp <- mvpart(data.matrix(mergeData[,6:10])~WSPD+GSPD+ATMS+SSTP, mergeData)
 ```
 
-![plot of chunk createMRT](http://cougrstats.files.wordpress.com/2018/04/createmrt-1.png)
+![](http://cougrstats.files.wordpress.com/2018/04/createmrt-1.png)
 
 ```r
 summary(comp)
@@ -214,7 +214,7 @@ If we want to then we can prune the tree ourselves. R will give us an interactiv
 mvpart(data.matrix(mergeData[,6:10])~WSPD+GSPD+ATMS+SSTP, mergeData, xv="p")
 ```
 
-![plot of chunk selfPrune](http://cougrstats.files.wordpress.com/2018/04/selfprune-1.png)![plot of chunk selfPrune](http://cougrstats.files.wordpress.com/2018/04/selfprune-2.png)
+![](http://cougrstats.files.wordpress.com/2018/04/selfprune-1.png)![](http://cougrstats.files.wordpress.com/2018/04/selfprune-2.png)
 
 Finally, we can produce a summary of each of the leaves and conditions within our tree.
 

@@ -1,6 +1,6 @@
 ---
 title: 'Research Profile: Predicting antibacterial efficacy using snake venom data'
-author: cougrstats
+author: Michael Meyer
 date: '2018-02-14'
 tags:
   - discriminant analysis
@@ -41,9 +41,7 @@ The **objective** of this study is to accurately predict antibacterial efficacy 
 The **main questions** involved in this study are three-fold:
 
   1. Is there a clear relationship between snake venom proteomic composition and the potential for that venom to have antibiotic properties?
-
   2. What is the best statistical model to predict antibiotic efficacy?
-
   3. Can we use the "best model" to predict antibiotic efficacy for snakes that have unkown efficacy data?
 
 We **hypothesized** that L-Amino-Acid Oxidases and Phospholipase A2 concentrations are more associated with antibiotic properties of snake venom, based on literature review (Charvat et al., _In Review_).
@@ -53,7 +51,6 @@ We **hypothesized** that L-Amino-Acid Oxidases and Phospholipase A2 concentratio
 The following packages are required:
 
   1. Data Manipluation: tidyr, dplyr, stringr
-
   2. Model Selection and Statistical Operations: car, MASS, glmulti, pROC
 
 ```r
@@ -94,15 +91,10 @@ elap.gramneg.fac.bacillus <- read.csv("elap.gramneg.fac.bacillus.csv", header=TR
 ```
 
   * **Snake.species** and **Family**: Genus and Species of snake, as well as Family of Snake (All should be Elapidae)
-
   * **Three.finger.toxins, Phospholipase.A2, Metalloproteinases, Serine.proteinases, Disintegrins, C.type.lectins, peptides, Vespryn.ohanin, Exonuclease.PDE.5..nuclotidases, Waglerins, Cysteine.rich.secretory.proteins, Snake.venom.growth.factors, L.amino.acid.oxidase, Waprin.Kunitz.BPTI, Hyaluronidase, Bradykinin.potentiating.peptides.and.natriuretic.peptides**: Arcsine transformed protein proportions.
-
   * **Toxin**: Type of toxin considered from original study (Should be Crude_Venom)
-
   * **bacteria**: Bacterial species considered in the study
-
   * **effectiveness**: Whether or not crude venom was effective as an antibiotic. Binary responses coded as 0 for ineffective and 1 as effective.
-
   * **Respiration**, **Morphology**, and **Gram.Stain**: Metadata on the bacteria of study. (Should be Facultative anaerobic, bacillus, and gram negative respectively)
 
 ## Summary Statistics
@@ -112,7 +104,6 @@ This step is essential for model selection. Essentially, we want to select for p
 For now, we are just going to look at Mean, Variance, and the Ratio of Variance to Mean. We will use these statistics to determine which proteins should go into our final model selection code. We set the following guidelines for whether a protein should be considered for model selection incoporation:
 
   1. Variance needs to be greater than 0.01.
-
   2. Variance to Mean Ratio needs to be greater than or equal to 0.05, meaning that the variance is at least 5% of the mean.
 
 ```r
@@ -367,11 +358,11 @@ Now we see some interesting information. First, Disintegrins, Waglerins, and Hya
 
 Secondly, we see that Three-Finger toxins, Phospholipase A2, Metalloproteinases, Waprin-Kunitz,and L-Amino-Acid Oxidases vary most intensively. These are the proteins that we will use for predictive measures. However, we should probably see if any of them are strongly correlated first. Our cut-off for strong-correlation is p-value < 0.01.
 
-![plot of chunk unnamed-chunk-4](http://cougrstats.files.wordpress.com/2018/02/unnamed-chunk-4-1.png)
+![](http://cougrstats.files.wordpress.com/2018/02/unnamed-chunk-4-1.png)
 
 Here we see that including Three Finger Toxins and L-Amino-Acid-Oxidases may introduce some redundancies within our data, so we are going to eliminate those. We will now double check those correlations for the three final candidate proteins.
 
-![plot of chunk unnamed-chunk-5](http://cougrstats.files.wordpress.com/2018/02/unnamed-chunk-5-1.png)
+![](http://cougrstats.files.wordpress.com/2018/02/unnamed-chunk-5-1.png)
 
 ## Model Selection and Model Cross Validation General Process
 
@@ -405,7 +396,7 @@ elap.gramneg.fac.bacillus.model <-
 ## Mean crit= 54.7067328978274
 ```
 
-![plot of chunk unnamed-chunk-6](http://cougrstats.files.wordpress.com/2018/02/unnamed-chunk-6-1.png)
+![](http://cougrstats.files.wordpress.com/2018/02/unnamed-chunk-6-1.png)
 
 ```r
 ## Completed.
@@ -596,7 +587,7 @@ elap.gramneg.fac.bacillus <- data.frame(elap.gramneg.fac.bacillus)
 plot(pROC::roc(elap.gramneg.fac.bacillus$effectiveness ~ elap.gramneg.fac.bacillus$PREDICTION), main = "ROC for best model")
 ```
 
-![plot of chunk unnamed-chunk-8](http://cougrstats.files.wordpress.com/2018/02/unnamed-chunk-8-1.png)
+![](http://cougrstats.files.wordpress.com/2018/02/unnamed-chunk-8-1.png)
 
 ```r
 elap.gramneg.fac.bacillus <- elap.gramneg.fac.bacillus %>%
@@ -816,7 +807,7 @@ hist(AUC.repo, xlim = c(0,1), main = "Histogram of Permuted AUCs")
 abline(v = elap.gramneg.fac.bacillus.fits$AUC[2], col = "red")
 ```
 
-![plot of chunk unnamed-chunk-9](http://cougrstats.files.wordpress.com/2018/02/unnamed-chunk-9-1.png)
+![](http://cougrstats.files.wordpress.com/2018/02/unnamed-chunk-9-1.png)
 
 ```r
 prop.above <- length(AUC.repo[AUC.repo > elap.gramneg.fac.bacillus.fits$AUC[1]])/length(AUC.repo)

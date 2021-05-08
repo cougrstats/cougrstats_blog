@@ -1,6 +1,6 @@
 ---
 title: Raster analyses in R
-author: cougrstats
+author: Alli Cramer
 date: '2019-01-30'
 categories:
   - Research Profiles
@@ -12,6 +12,8 @@ tags:
 slug: raster-analyses-in-r
 ---
 
+_By Alli Cramer_
+
 ## Spatial analysis in R
 
 For one of my primary experiences of spatial analysis in R, we used a number of existing data bases to determine the average yearly temperature and precipitation for over _1.3 million_ lakes. One of my duties in this project was to combine multiple raster layers from a reanalysis of satellite data (From MERRA2, for all you climate nerds) to determine the average values. We then re-sampled the grids to match the spatial resolution of some lake data.
@@ -20,7 +22,7 @@ The data is WAY to big to use in this example, so we will first be generating so
 
 If you you like to learn more about spatial calculations in R in general, I recommend this website: https://rspatial.org/spatial/rst/sphere/sphere/index.html
 
-If you would like to learn more specifics about mapping, we have a great mapping tutorial on this blog here: https://cougrstats.wordpress.com/2018/04/30/mapping-in-r/
+If you would like to learn more specifics about mapping, we have a great mapping tutorial on this blog here: https://cougrstats.netlify.app/post/mapping-in-r/
 
 ## Libraries you will need
 
@@ -142,9 +144,7 @@ One of the primary uses for rasters is to compare one set of spatial data to ano
 **When using rasters in R make sure to double check your**
 
   * projection
-
   * dimensions
-
   * expected values
 
 **Before doing any calculations**
@@ -237,7 +237,7 @@ plt <- levelplot(T1, margin = F, at=cutpts, cuts=11, pretty=TRUE, par.settings =
 plt + layer(sp.lines(world.outlines.sp, col = "black", lwd = 0.5))
 ```
 
-![plot of chunk unnamed-chunk-37](http://cougrstats.files.wordpress.com/2019/01/unnamed-chunk-37-1.png)
+![](http://cougrstats.files.wordpress.com/2019/01/unnamed-chunk-37-1.png)
 
 ## Raster Brick and Raster Stack
 
@@ -343,4 +343,4 @@ grid.arrange(
   heights = c(1,1.5)) #make the second row larger (here it is 1.5)
 ```
 
-![plot of chunk unnamed-chunk-39](http://cougrstats.files.wordpress.com/2019/01/unnamed-chunk-39-1.png)
+![](http://cougrstats.files.wordpress.com/2019/01/unnamed-chunk-39-1.png)

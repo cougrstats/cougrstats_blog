@@ -1,6 +1,6 @@
 ---
 title: Introduction to R - A Roadmap
-author: cougrstats
+author: Alli N. Cramer
 date: '2018-01-25'
 categories:
   - Introduction to R
@@ -18,21 +18,13 @@ _Author: Alli N. Cramer_
 This is an attempt to orient you around R. To give you a roadmap of sorts to help you find your way when learning R. The following text will show you:
 
   * What R is
-
   * What R studio is
-
   * How to do basic math in R
-
   * How to add, save, and bring in data
-
   * How to read basic R syntax
-
   * How to make a linear model and a basic plot
-
   * How to add packages
-
   * What a dplyr pipe is
-
   * How to plot with ggplot
 
 This is, of course, just the tip of the iceberg as far as R goes but hopefully this orients you so that you can follow along in future R sessions.
@@ -47,7 +39,7 @@ R is a free software for stats. It also is useful for data cleaning and making g
 
 RStudio is a wrapper for R, or an IDE (integrated development environment). It runs the R Console within it, normally at the bottom left. The top right is the script pane.The Environment on the top right shows you what data R is remembering and keeping track of. The bottom right pane has help (super useful), shows plots, lets you point and click to install packages, and more.
 
-![R Studio Interface](https://cougrstats.files.wordpress.com/2018/01/r-studio-interface.png)
+![](https://cougrstats.files.wordpress.com/2018/01/r-studio-interface.png)
 
 The Scripte Pane lets you write scripts, but not necessarily have R do anything until you send the code to the R Console. To send information from scripts to the console, you can highlight the script and press the green "run" arrow at the top right of the script pane. You can also use some short cuts to sent code back and forth from the console and script pane :
 
@@ -56,11 +48,8 @@ The Scripte Pane lets you write scripts, but not necessarily have R do anything 
 Highlight the code chunk, or run whatever line your cursor is on.
 
   * ctrl + Enter (shortcut to run code)
-
   * ctrl + 1 (go to script pane)
-
   * ctrl + 2 (go to R Console)
-
   * alt + - (shortcut to make "<-" symbol)
 
 # Using Basic R
@@ -91,7 +80,7 @@ z <- x + y
 ```
 
 We can see that R now keeps track of these objects by looking in the environment:
-![AssignedValues](https://cougrstats.files.wordpress.com/2018/01/assignedvalues.png)
+![](https://cougrstats.files.wordpress.com/2018/01/assignedvalues.png)
 
 ## Working with Data
 
@@ -412,14 +401,14 @@ Lets make a basic plot by plotting the new Area column against Petal Width
 plot(Sepal.Area ~ Petal.Width, data = dat)
 ```
 
-![plot of chunk basic plot](http://cougrstats.files.wordpress.com/2018/01/basic-plot-1.png)
+![](http://cougrstats.files.wordpress.com/2018/01/basic-plot-1.png)
 
 ```r
 #can plot with or without color.
 p <- plot(Sepal.Area ~ Petal.Width, data = dat, col = Species)
 ```
 
-![plot of chunk basic plot col](http://cougrstats.files.wordpress.com/2018/01/basic-plot-col-1.png)
+![](http://cougrstats.files.wordpress.com/2018/01/basic-plot-col-1.png)
 
 ```r
 #there are lots of plot options - see help section for more.
@@ -471,7 +460,7 @@ plot(Sepal.Area ~ Petal.Width, data = dat, col = Species)
 abline(mod)
 ```
 
-![plot of chunk basic mod plot](http://cougrstats.files.wordpress.com/2018/01/basic-mod-plot-1.png)
+![](http://cougrstats.files.wordpress.com/2018/01/basic-mod-plot-1.png)
 
 Ooooooo! A fancy plot _with_ a linear model.
 
@@ -491,7 +480,7 @@ install.packages("dplyr")
 
 Installing by Point and Click:
 
-![PointAndClickPackages](https://cougrstats.files.wordpress.com/2018/01/pointandclickpackages.png)
+![](https://cougrstats.files.wordpress.com/2018/01/pointandclickpackages.png)
 
 To use the functions within the packages, we need to tell R to use the packages using library(). When doing this, you may get some warnings. Read the warnings to understand what is happening. Most of the warnings are simply telling you that some commands are called the same things within R. If you load a package using library and it has functions with the same names as previously loaded packages, the default function with that name will become the most recently loaded function. See the example below with the "filter" function when we load dplyr. The stats package (which comes pre-loaded) also has a filter function:
 
@@ -514,7 +503,7 @@ dplyr is an R package that is extremely useful for data manipulation. dplyr has 
 
 The pipe command, %>%, is used in modern R code even when people don't need to manipulate data. It works with other functions and packages and is extremely useful for chaining commands. The pipe command feeds the results of one function into the results of another, without requiring separate values to be assigned to each results. You can think of it like an assembly line:
 
-![DplyrPipeDiagram](https://cougrstats.files.wordpress.com/2018/01/dplyrpipediagram.png)
+![](https://cougrstats.files.wordpress.com/2018/01/dplyrpipediagram.png)
 
 Now, lets use dplyr to group our data by species and explore some patterns. Notice that when we use the pipe command, we indent the code until the pipe is done. This is best practice for readability and troubleshooting.
 
@@ -588,7 +577,7 @@ p1 <- ggplot(data = dat, aes(x = Petal.Width, y = Sepal.Area, color = Species))
 p1
 ```
 
-![plot of chunk gg empty](http://cougrstats.files.wordpress.com/2018/01/gg-empty-1.png)
+![](http://cougrstats.files.wordpress.com/2018/01/gg-empty-1.png)
 
 This gives us an empty plot! This is because while we've shown it the data, we haven't told it what to do. To do that we need to tell it what form, or "geometry", to put on the graph.
 
@@ -599,7 +588,7 @@ p1 <- ggplot(data = dat, aes(x = Petal.Width, y = Sepal.Area, color = Species)) 
 p1
 ```
 
-![plot of chunk gg full](http://cougrstats.files.wordpress.com/2018/01/gg-full-1.png)
+![](http://cougrstats.files.wordpress.com/2018/01/gg-full-1.png)
 
 Now we have the plot we expected!
 
@@ -613,21 +602,21 @@ p1 +
   facet_wrap(~Species)
 ```
 
-![plot of chunk gg facet](http://cougrstats.files.wordpress.com/2018/01/gg-facet-1.png)
+![](http://cougrstats.files.wordpress.com/2018/01/gg-facet-1.png)
 
 ```r
 p1 +
   facet_wrap(~Species, nrow = 3)
 ```
 
-![plot of chunk gg facet](http://cougrstats.files.wordpress.com/2018/01/gg-facet-2.png)
+![](http://cougrstats.files.wordpress.com/2018/01/gg-facet-2.png)
 
 ```r
 p1 +
   facet_grid(facet = Species ~.)
 ```
 
-![plot of chunk gg facet](http://cougrstats.files.wordpress.com/2018/01/gg-facet-3.png)
+![](http://cougrstats.files.wordpress.com/2018/01/gg-facet-3.png)
 
 Lastly, lets add that linear model back in! First, we will need to understand our linear model a little more. ggplot cannot just add a model line, but it CAN us model coefficients.
 
@@ -662,7 +651,7 @@ p1 +
               slope = coef(mod) ["Petal.Width"])
 ```
 
-![plot of chunk gg mod facet](http://cougrstats.files.wordpress.com/2018/01/gg-mod-facet-1.png)
+![](http://cougrstats.files.wordpress.com/2018/01/gg-mod-facet-1.png)
 
 ```r
 #same model line - our above model wasn't split by groups

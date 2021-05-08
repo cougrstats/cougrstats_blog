@@ -1,6 +1,6 @@
 ---
 title: 'Code Profiling: Monitoring and Speeding up your code'
-author: cougrstats
+author: Julia Piaskowski
 date: '2018-09-24'
 categories:
   - Package Introductions
@@ -23,25 +23,17 @@ Dirk Eddelbuettel, [Rcpp](http://www.rcpp.org/)
 #### The Process for Improving Code:
 (quote from _Advanced R_)
 
-<blockquote>
-
->
->
 
 >   1. Find the biggest bottleneck (the slowest part of your code).
 >
-
 >   2. Try to eliminate it (you may not succeed but that's ok).
 >
-
 >   3. Repeat until your code is fast enough.
->
 
-</blockquote>
 
 **Easy peasy, right???**
 
-![owl](https://cougrstats.files.wordpress.com/2018/09/owl.png)
+![](https://cougrstats.files.wordpress.com/2018/09/owl.png)
 
 #### Some general guidelines for speeding up R code
 
@@ -106,7 +98,6 @@ enableJIT(0)
 ##### The microbenchmark function
 
   * for evaluating small snippets of code
-
   * below is a comparison of several approaches to calculating a mean
 
 ```r
@@ -154,7 +145,6 @@ microbenchmark(
 ##### Prevent multiple dispatch:
 
   * the function mean() is meant to handle several different types of data
-
   * specifying the method (thus implying a certain type of input) can speed up the process for small data sets
 
 ```r
@@ -261,7 +251,6 @@ getAnywhere(var)
 ##### Find the bottlenecks with Rprof()
 
   * writes stack calls to disk along with memory usage and vector duplication
-
   * you create a .prof file to do this and then close it when done with profiling
 
 ```r
@@ -348,7 +337,6 @@ summaryRprof("permute.prof") #, memory = "both")
 ##### Use profvis to visualize performance
 
   * nice graphical output
-
   * native in RStudio (lots of [documentation](https://support.rstudio.com/hc/en-us/articles/218221837-Profiling-with-RStudio))
 
 ```r
@@ -380,11 +368,8 @@ browseURL("profile.html")
 (if you didn't write the function yourself)
 
   1. Type the function name (without parentheses): `eigen`
-
   2. Find namespace and methods associated: `methods("princomp"); getAnywhere("princomp.default")`
-
   3. Use the package _pryr_ to search for C code on GitHub
-
   4. Download the entire package and explore the code
 
 ```r
@@ -453,18 +438,14 @@ enableJIT(3)
 These are designed to reduce internal checks
 
   1. read.csv(): specify known column types with colClasses.
-
   2. factor(): specify known levels with levels.
-
   3. cut(): don't generate labels with labels = FALSE if you don't need them, or, even better, use findInterval().
-
   4. unlist(x, use.names = FALSE) is much faster than unlist(x).
-
   5. interaction(): if you only need combinations that exist in the data, use drop = TRUE.
 
 ### Remember!
 
-![plot of chunk unnamed-chunk-11](http://cougrstats.files.wordpress.com/2018/09/xkcd1205.png)
+![](http://cougrstats.files.wordpress.com/2018/09/xkcd1205.png)
 [xckd comic](https://xkcd.com/1205/)
 
 _Top image from [HackerImage website](https://www.hackerearth.com/blog/python/faster-python-code/)._

@@ -1,6 +1,6 @@
 ---
 title: Basics of R Markdown
-author: cougrstats
+author: Alli N. Cramer
 date: '2018-02-12'
 categories:
   - Package Introductions
@@ -41,7 +41,7 @@ summary(cars)
 
 You can also embed plots, for example:
 
-![plot of chunk pressure](http://cougrstats.files.wordpress.com/2018/02/pressure-1.png)
+![](http://cougrstats.files.wordpress.com/2018/02/pressure-1.png)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 

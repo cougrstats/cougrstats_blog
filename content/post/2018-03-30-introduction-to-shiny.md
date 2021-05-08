@@ -1,6 +1,6 @@
 ---
 title: Introduction to Shiny
-author: cougrstats
+author: Alli N. Cramer
 date: '2018-03-30'
 categories:
   - Package Introductions

@@ -1,6 +1,6 @@
 ---
 title: Best practices in R version control
-author: cougrstats
+author: Nicholas Potter
 date: '2019-01-30'
 slug: best-practices-in-r-version-control
 ---

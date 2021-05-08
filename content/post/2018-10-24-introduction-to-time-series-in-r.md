@@ -1,6 +1,6 @@
 ---
 title: Introduction to Time Series in R
-author: cougrstats
+author: Alli Cramer
 date: '2018-10-24'
 categories:
   - Package Introductions
@@ -26,13 +26,12 @@ For this example, we will be using a Lynx population dataset. You can find the d
 
 From: <https://datamarket.com/data/set/22vj/annual-number-of-lynx-trapped-mackenzie-river-1821-1934#!ds=22vj&display=line>
 
-##Plot the series and examine the main features of the graph, checking in particular whether there is:
+## Plot the series and examine the main features of the graph, checking in particular whether there is:
 
-(a) a trend,
-
-(b) a seasonal component,
-
-© any apparent sharp changes in behavior, (d) any outlying observations. Explain in detail.
+(a) a trend,  
+(b) a seasonal component,  
+(c) any apparent sharp changes in behavior,  
+(d) any outlying observations. Explain in detail.
 
 ```r
 lynx = read.csv("C:/Users/allison.cramer/OneDrive/Teaching/R Working Group/ExampleData/TimeSeries/annual-number-of-lynx-trapped-ma.CSV", header = T)
@@ -49,7 +48,7 @@ head(lynx)
 plot(lynx, type= "l", main = "Figure 1 - Annual Number of Lynx Trapped on the Mackenzie River from 1821-1934")
 ```
 
-![plot of chunk looking at data](http://cougrstats.files.wordpress.com/2018/10/looking-at-data-1.png)
+![](http://cougrstats.files.wordpress.com/2018/10/looking-at-data-1.png)
 
 To the right is the plot of the raw Lynx data. From this initial observation it appears that there is a seasonal component to the data, but that there is a minimal trend and the variance is rather stable. There are a few observations that seem to be outliers - the three large spies around years 1829, 1865, and 1905 - however I am unconvinced that they are outliers as they appear evenly spaced apart and are all about the same height.
 
@@ -71,11 +70,11 @@ acf(dat, 50, main = "Figure 2.1 - ACF of raw Lynx Data")
 pacf(dat, 50, main = "Figure 2.2 - PACF of raw Lynx Data")
 ```
 
-![plot of chunk turning to time series](http://cougrstats.files.wordpress.com/2018/10/turning-to-time-series-2.png)
+![](http://cougrstats.files.wordpress.com/2018/10/turning-to-time-series-2.png)
 
 To achieve stationary residuals the seasonality of the data was investigated. Examining the ACF seemed to indicate a 10 year seasonal trend (Fig 2), however differencing the data did not improve the oscillations present in the ACF. It seems that the peaks, despite their apparent periodicity, are not predictable. Because of this we will not make any models that had a seasonal component.
 
-##looking at the variance
+## Looking at the variance
 Lets look at the variance for the first half of the dataset, and the second half.
 
 ```r
@@ -110,7 +109,7 @@ d.log = log(dat)
 plot(d.log)
 ```
 
-![plot of chunk log transform](http://cougrstats.files.wordpress.com/2018/10/log-transform-1.png)
+![](http://cougrstats.files.wordpress.com/2018/10/log-transform-1.png)
 
 ```r
 data = d.log
@@ -140,13 +139,13 @@ var(first) - var(second)
 hist(dat, main = "Figure 3 - untransformed Lynx data")
 ```
 
-![plot of chunk log transform](http://cougrstats.files.wordpress.com/2018/10/log-transform-2.png)
+![](http://cougrstats.files.wordpress.com/2018/10/log-transform-2.png)
 
 ```r
 hist(d.log, main = "Figure 4 - transformed Lynx data")
 ```
 
-![plot of chunk log transform](http://cougrstats.files.wordpress.com/2018/10/log-transform-3.png)
+![](http://cougrstats.files.wordpress.com/2018/10/log-transform-3.png)
 
 The log transformed is MUCH better.
 
@@ -159,13 +158,13 @@ d.log.detrend <- resid(lm(d.log ~ time(d.log)))
 plot(d.log.detrend, type = "l", main = "Figure 5 - detrended and log transformed Lynx data")
 ```
 
-![plot of chunk detrending](http://cougrstats.files.wordpress.com/2018/10/detrending-1.png)
+![](http://cougrstats.files.wordpress.com/2018/10/detrending-1.png)
 
 ```r
 hist(d.log.detrend)
 ```
 
-![plot of chunk detrending](http://cougrstats.files.wordpress.com/2018/10/detrending-2.png)
+![](http://cougrstats.files.wordpress.com/2018/10/detrending-2.png)
 
 ```r
 #this looks pretty good now.
@@ -173,7 +172,7 @@ hist(d.log.detrend)
 
 We can also attempt to remove a seasonal component to the data. Below is the code for that, but we won't run it because it doesn't improve stationarity. So, despite what it appears to be, once log transformed and detrended the lynx data is already stationary!
 
-##Removing seasonal trends - how you would do it, though it doesn't work for this dataset.
+## Removing seasonal trends - how you would do it, though it doesn't work for this dataset.
 
 ```r
 #the pacf component appears to be an AR(2)
@@ -205,7 +204,7 @@ The syntax for ARIMA models is generally Arima(p,d,q). So in the example below, 
 acf.d = acf2(d.log.detrend, 50)
 ```
 
-![plot of chunk model fitting](http://cougrstats.files.wordpress.com/2018/10/model-fitting-1.png)
+![](http://cougrstats.files.wordpress.com/2018/10/model-fitting-1.png)
 
 ```r
 mod.1 = sarima(d.log.detrend, 2,0,1)
@@ -244,7 +243,7 @@ mod.1 = sarima(d.log.detrend, 2,0,1)
 ## converged
 ```
 
-![plot of chunk model fitting](http://cougrstats.files.wordpress.com/2018/10/model-fitting-2.png)
+![](http://cougrstats.files.wordpress.com/2018/10/model-fitting-2.png)
 
 ```r
 mod.2 = sarima(d.log.detrend, 2,0,2)
@@ -287,7 +286,7 @@ mod.2 = sarima(d.log.detrend, 2,0,2)
 ## converged
 ```
 
-![plot of chunk model fitting](http://cougrstats.files.wordpress.com/2018/10/model-fitting-3.png)
+![](http://cougrstats.files.wordpress.com/2018/10/model-fitting-3.png)
 
 ```r
 mod.1$AICc
@@ -301,7 +300,7 @@ mod.2$AICc
 
 Based on the ACF and PACF of the now stationary series, the better model from our two models is an ARIMA(2,0,1) model (Fig. 6). From the ACF we see that it is most likely MA(1), though MA(2) is also a possibility. From the PACF we can see that it is AR(2) due to the two strong peaks.
 
-###What is the model obtained by using AICC? Is it same as one of the models suggested by ACF/PACF?
+### What is the model obtained by using AICC? Is it same as one of the models suggested by ACF/PACF?
 We can compare a number of models this way. We will not run this code because it takes up lots of space, but feel free to run and observe on your own.
 
 ```r
@@ -328,7 +327,7 @@ aic.m
 
 To examine other models besides the one selected based off of the ACF and PACF plots, models were generated used for-loops and then compared using BIC and AICc values (Tables 1, 2). The BIC matrix shows that the model supported by the BIC values (i.e. the lowest matrix value) is an ARMA(2, 0, 0) with a BIC value of -1.1857. This is almost indistinguishable from the next lowest model, an ARMA(2,0,1), which is the model supported by my model choice based off of the ACF and PACF, BIC value of -1.1686. When looking at the AICc values the lowest value is an ARMA(2,0,2) model, however the AICc values are all essentially the same. In fact, none of the values are far enough apart to merit real distinction between models.
 
-##Estimate the parameters of the model and write down the model in algebraic form.
+## Estimate the parameters of the model and write down the model in algebraic form.
 
 ```r
 #turning model into an arima() model to get the coef. and variance estimates
@@ -364,7 +363,7 @@ We estimated the parameters using the Maximum Likelihood Method (which is the de
 
 The variance in the estimates was produced using the arima() command as well, and can be seen above.
 
-##Do the diagnostic checking, plot the residuals of the fitted model.
+## Do the diagnostic checking, plot the residuals of the fitted model.
 
 ```r
 #Plot the autocorrelations of the residuals. Are their any outliers?
@@ -374,13 +373,13 @@ resid = mod.1.1$residuals
 plot(resid, main = "Figure 7 - Plot of Residuals")
 ```
 
-![plot of chunk diagnostics](http://cougrstats.files.wordpress.com/2018/10/diagnostics-1.png)
+![](http://cougrstats.files.wordpress.com/2018/10/diagnostics-1.png)
 
 ```r
 acf(resid, 1000)
 ```
 
-![plot of chunk diagnostics](http://cougrstats.files.wordpress.com/2018/10/diagnostics-2.png)
+![](http://cougrstats.files.wordpress.com/2018/10/diagnostics-2.png)
 
 ```r
   #the plot of the residuals seems to show that, although very spiky, there are not any dramatic outliers.
@@ -392,7 +391,7 @@ resid.nom = as.numeric(mod.1.1$residuals[1:114])
 hist(resid.nom, main = "Figure 8 - Histogram of Residuals")
 ```
 
-![plot of chunk diagnostics](http://cougrstats.files.wordpress.com/2018/10/diagnostics-3.png)
+![](http://cougrstats.files.wordpress.com/2018/10/diagnostics-3.png)
 
 ```r
 #pretty dang normal
@@ -428,7 +427,7 @@ short = d.log.detrend[1:(length(d.log.detrend)-10)]
 forcasted = sarima.for(short, p = 2, d = 0, q = 1, n.ahead = 10)
 ```
 
-![plot of chunk forcasting](http://cougrstats.files.wordpress.com/2018/10/forcasting-1.png)
+![](http://cougrstats.files.wordpress.com/2018/10/forcasting-1.png)
 
 ```r
 forcasted$pred
@@ -472,4 +471,4 @@ lines(upper, type = "l", lty=2, lwd=1, col = "blue")
 lines(lower, type = "l", lty=2, lwd=1, col = "blue")
 ```
 
-![plot of chunk forcasting](http://cougrstats.files.wordpress.com/2018/10/forcasting-2.png)
+![](http://cougrstats.files.wordpress.com/2018/10/forcasting-2.png)
