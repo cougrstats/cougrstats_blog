@@ -3,6 +3,11 @@ title: Webscraping in R
 author: cougrstats
 date: '2018-10-12'
 slug: webscraping-in-r
+categories:
+  - Package Introductions
+tags:
+  - webscraping
+  - rvest
 ---
 
 # Things to Look for as a Beginner

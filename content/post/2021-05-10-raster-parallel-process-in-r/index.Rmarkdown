@@ -1,0 +1,185 @@
+---
+title: Raster parallel process in R
+author: Fidel Maureira Sotomayor
+date: '2021-05-10'
+slug: []
+categories:
+  - Research Profile
+tags:
+  - raster
+  - parallel
+  - snow
+  - foreach
+description: Article description.
+featured: yes
+toc: no
+featureImage: /images/raster_20210510_large.png
+thumbnail: /images/raster_20210510_thumb.png
+shareImage: /images/raster_20210510_thumb.png
+codeMaxLines: 10
+codeLineNumbers: no
+figurePositionShow: yes
+---
+
+
+Install libraries if there are no already in your computer. 
+
+```{r settings, echo=FALSE,results='hide', warning=FALSE, message=FALSE}
+packages = c('raster','terra', 'snow', 'parallel', 'foreach','doParallel','rasterVis', 'mapview','ggplot2', 'lubridate','pryr')
+out = sapply(packages ,  function(p){
+  print(p)
+  if(require(p,character.only = TRUE)==FALSE) {
+    install.packages(p)}
+   
+    require(p,character.only = TRUE)  })
+
+
+
+my_function = function(r, na.rm=TRUE, fun=mean) {
+  fun(getValues(r), na.rm=na.rm)
+}
+```
+
+Download files, alternative is possible use the function raster::getData. More details on https://worldclim.org/data/worldclim21.html
+
+```{r download files, eval=FALSE}
+temp <- tempfile()
+tempd <- tempdir()
+#download worldclim climate data
+download.file('https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_tavg.zip',temp, mode="wb")
+#raster::getData()
+unzip(temp, exdir=tempd)
+#dir(tempd) # explore the temp directory
+```
+
+```{r, include=FALSE}
+# temp <- tempfile()
+tempd <- tempdir()
+#download worldclim climate data
+# download.file('https://biogeo.ucdavis.edu/data/worldclim/v2.1/base/wc2.1_10m_tavg.zip',temp, mode="wb")
+#raster::getData()
+unzip("~/../Downloads/wc2.1_10m_tavg.zip", exdir=tempd)
+#dir(tempd) # explore the temp directory
+```
+
+Explore the data
+```{r}
+file_names = list.files(tempd,'wc2.1_10m_tavg')
+tmean <- stack(file.path(tempd, file_names))
+mapview(tmean[[7]])
+
+```
+## Paraleling
+Create cluster and load functions. Alternative you can create your own scrip file with function and just load this file.
+
+```{r}
+
+cl <- makeCluster(4, type='SOCK', outfile='log.txt')
+registerDoParallel(cl)
+out=clusterEvalQ(cl,library(raster))
+env= where('my_function')
+clusterExport(cl, list('my_function'),envir = env)
+#out =clusterEvalQ(cl, source('my_functions.R'))
+```
+
+We going to use two way of paralleling in R with the **snow**/**parallel** and **foreach** libraries. 
+
+```{r runCluster}
+
+system.time({
+  clusterExport(cl,list('tmean'))
+  mean_planet = parLapply(cl,c(1:12), function(l){
+    my_function(tmean[[l]])
+  })
+  mean_planet = unlist(mean_planet)
+})
+
+
+
+system.time({
+  mean_planet2 = foreach(l = c(1:12),
+                         .combine = rbind,
+                         .errorhandling = 'remove') %dopar%
+    my_function(tmean[[l]])
+}) 
+
+results = data.frame(layer_name = names(tmean),
+                     month =  month(1:12,label=TRUE, abbr = TRUE),
+                     parLapply_out =mean_planet,
+                     foreach_out = mean_planet2)
+```
+The first plot show the global mean temperature for each month. The second figure show that the two paralleling outcome the same results
+```{r}
+
+ggplot(results,aes(x=month,y=parLapply_out, col='parLapply_out'))+
+  geom_point()+labs(y='Mean temperature (°C)', col='', x='')+
+  geom_point(aes(y=foreach_out,col = 'foreach_out'))+theme_minimal()
+
+```
+
+
+## Split large raster
+We download the raster and make a split overlapped extent. The overlapped extent is only for the use of focus function, any other process should use a non-overlapped extent!
+Also is possible use the function **focus** in raster. but it is slower function.
+
+```{r splitRaster}
+file_raster = 'https://www.dropbox.com/s/onp3f75pab7z3j9/intro-1508529851.jpg?dl=1'
+
+r_raster = stack(file_raster)
+e =extent(r_raster)
+extent_r =list(r1 =extent(0, floor(e@xmax/2)+2, 0, floor(e@ymax/2)+2),
+               r2 = extent(ceiling (e@xmax/2), e@xmax, floor (e@ymax/2), e@ymax),
+               r3 =  extent(0, floor (e@xmax/2)+2,  floor (e@ymax/2), e@ymax),
+               r4 =  extent(ceiling (e@xmax/2), e@xmax,  0, floor (e@ymax/2)+2))
+
+```
+
+We call the parLapply from a lapply environment, so we need export elements from this environment (**env**).
+```{r }
+tmean_smooth = lapply(c(1:3) , function(l){
+  env= where('l')
+  clusterExport(cl, list('extent_r','r_raster','l'),envir=env)
+  r_parts = parLapply(cl,seq_along(extent_r),function(part){
+    r = r_raster[[l]]
+    r_part <- crop(r, extent_r[[part]])
+    #focal(r_part,w=matrix(1,3,3), fun='mean',na.rm=TRUE)
+    terra::focal(r_part,w=matrix(1,3,3), fun='mean',na.rm=TRUE)
+    #r_part
+  })
+  
+  m1 <- mosaic(r_parts[[1]], r_parts[[2]],r_parts[[3]],r_parts[[4]], fun=mean)
+  
+  m1
+})
+stopCluster(cl)
+#r_smooth = stack(tmean_smooth[[1]],tmean_smooth[[2]],tmean_smooth[[3]])
+r_smooth = do.call(stack,tmean_smooth)
+
+plotRGB(r_smooth)
+abline(v=390,h=219,col='green')
+
+```
+Versus original 
+```{r}
+plotRGB(r_raster)
+```
+##Visualization
+
+more info in https://oscarperpinan.github.io/rastervis/
+```{r visualization}
+data(volcano)
+volcano = raster(volcano)
+library(viridis)
+rasterVis::gplot(volcano) + 
+  geom_tile(aes(fill = (value)))  +
+  viridis::scale_fill_viridis(direction = -1, 
+                              na.value='#FFFFFF00') +
+  labs(fill='Altitud (m) ', x='E',y='N')+
+  theme_bw()
+
+levelplot(volcano,contour=TRUE)
+
+xyplot(wc2.1_10m_tavg_03~wc2.1_10m_tavg_07|cut(x, 4), data = tmean, auto.key = list(space='right'))
+```
+
+

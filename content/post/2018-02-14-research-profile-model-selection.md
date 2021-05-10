@@ -2,12 +2,13 @@
 title: 'Research Profile: Predicting antibacterial efficacy using snake venom data'
 author: Michael Meyer
 date: '2018-02-14'
+categories:
+  - Research Profiles
 tags:
   - discriminant analysis
   - glmulti
   - model selection
   - proc
-  - Research Profiles
   - venom
 slug: research-profile-model-selection
 ---

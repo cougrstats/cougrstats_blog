@@ -3,6 +3,10 @@ title: Text Analysis in R
 author: Michael F. Meyer
 date: '2018-10-16'
 slug: text-analysis-in-r
+categories:
+  - Research Profiles
+tags:
+  - text analysis
 ---
 
 _By Michael F. Meyer_
