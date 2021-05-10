@@ -16,15 +16,16 @@ toc: no
 featureImage: /images/raster_20210510_large.png
 thumbnail: /images/raster_20210510_thumb.png
 shareImage: /images/raster_20210510_thumb.png
-codeMaxLines: 10
+codeMaxLines: 100
 codeLineNumbers: no
 figurePositionShow: yes
 ---
 
+_By Fidel Maureira Sotomayor_
 
 Install libraries if there are no already in your computer. 
 
-```{r settings, echo=FALSE,results='hide', warning=FALSE, message=FALSE}
+```{r settings, results='hide', warning=FALSE, message=FALSE}
 packages = c('raster','terra', 'snow', 'parallel', 'foreach','doParallel','rasterVis', 'mapview','ggplot2', 'lubridate','pryr')
 out = sapply(packages ,  function(p){
   print(p)

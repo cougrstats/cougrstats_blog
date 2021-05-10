@@ -16,7 +16,7 @@ toc: no
 featureImage: /images/raster_20210510_large.png
 thumbnail: /images/raster_20210510_thumb.png
 shareImage: /images/raster_20210510_thumb.png
-codeMaxLines: 10
+codeMaxLines: 100
 codeLineNumbers: no
 figurePositionShow: yes
 ---
@@ -32,7 +32,7 @@ figurePositionShow: yes
 <script src="{{< blogdown/postref >}}index_files/leaflet-binding/leaflet.js"></script>
 <script src="{{< blogdown/postref >}}index_files/leaflet-providers/leaflet-providers_1.9.0.js"></script>
 <script src="{{< blogdown/postref >}}index_files/leaflet-providers-plugin/leaflet-providers-plugin.js"></script>
-<script src="{{< blogdown/postref >}}index_files/tmean[[7]]/data_stars_tmean7af47e5.txt"></script>
+<script src="{{< blogdown/postref >}}index_files/tmean[[7]]/data_stars_tmean7876df1.txt"></script>
 <script src="{{< blogdown/postref >}}index_files/joda/joda.js"></script>
 <script src="{{< blogdown/postref >}}index_files/joda/addImageQuery-bindings.js"></script>
 <script src="{{< blogdown/postref >}}index_files/clipboard/setClipboardText.js"></script>
@@ -43,7 +43,25 @@ figurePositionShow: yes
 <link href="{{< blogdown/postref >}}index_files/mapviewCSS/mapview-popup.css" rel="stylesheet" />
 <link href="{{< blogdown/postref >}}index_files/mapviewCSS/mapview.css" rel="stylesheet" />
 
+*By Fidel Maureira Sotomayor*
+
 Install libraries if there are no already in your computer.
+
+``` r
+packages = c('raster','terra', 'snow', 'parallel', 'foreach','doParallel','rasterVis', 'mapview','ggplot2', 'lubridate','pryr')
+out = sapply(packages ,  function(p){
+  print(p)
+  if(require(p,character.only = TRUE)==FALSE) {
+    install.packages(p)}
+   
+    require(p,character.only = TRUE)  })
+
+
+
+my_function = function(r, na.rm=TRUE, fun=mean) {
+  fun(getValues(r), na.rm=na.rm)
+}
+```
 
 Download files, alternative is possible use the function raster::getData. More details on https://worldclim.org/data/worldclim21.html
 
@@ -121,7 +139,7 @@ system.time({
 ```
 
     ##    user  system elapsed 
-    ##    0.00    0.00    1.22
+    ##    0.00    0.00    1.51
 
 ``` r
 system.time({
@@ -133,7 +151,7 @@ system.time({
 ```
 
     ##    user  system elapsed 
-    ##    0.02    0.00    1.20
+    ##    0.04    0.02    1.37
 
 ``` r
 results = data.frame(layer_name = names(tmean),
