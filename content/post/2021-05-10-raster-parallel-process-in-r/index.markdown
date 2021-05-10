@@ -4,7 +4,7 @@ author: Fidel Maureira Sotomayor
 date: '2021-05-10'
 slug: []
 categories:
-  - Research Profile
+  - Research Profiles
 tags:
   - raster
   - parallel
@@ -32,7 +32,7 @@ figurePositionShow: yes
 <script src="{{< blogdown/postref >}}index_files/leaflet-binding/leaflet.js"></script>
 <script src="{{< blogdown/postref >}}index_files/leaflet-providers/leaflet-providers_1.9.0.js"></script>
 <script src="{{< blogdown/postref >}}index_files/leaflet-providers-plugin/leaflet-providers-plugin.js"></script>
-<script src="{{< blogdown/postref >}}index_files/tmean[[7]]/data_stars_tmean7ba5e37.txt"></script>
+<script src="{{< blogdown/postref >}}index_files/tmean[[7]]/data_stars_tmean7af47e5.txt"></script>
 <script src="{{< blogdown/postref >}}index_files/joda/joda.js"></script>
 <script src="{{< blogdown/postref >}}index_files/joda/addImageQuery-bindings.js"></script>
 <script src="{{< blogdown/postref >}}index_files/clipboard/setClipboardText.js"></script>
@@ -121,7 +121,7 @@ system.time({
 ```
 
     ##    user  system elapsed 
-    ##     0.0     0.0     1.5
+    ##    0.00    0.00    1.22
 
 ``` r
 system.time({
@@ -133,7 +133,7 @@ system.time({
 ```
 
     ##    user  system elapsed 
-    ##    0.03    0.01    1.34
+    ##    0.02    0.00    1.20
 
 ``` r
 results = data.frame(layer_name = names(tmean),
