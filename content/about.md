@@ -8,7 +8,7 @@ description: WSU's community-run home for R programming resources
 title: About
 ---
 
-WSU’s R Working Group was started in Spring of 2016 by [Alli N. Cramer](https://www.allicramer.com/) in conjunction with [CEREO](https://cereo.wsu.edu/). The group, founded by a PhD student, is focused on peer-to-peer learning through student, post-doc, and faculty-lead seminars. [Michael Meyer](https://labs.wsu.edu/hampton/people/michael-meyer/) and [Matthew Brousil](https://labs.wsu.edu/hampton/people/matthew-brousil/) are the current organizers.
+[Washington State University’s](https://wsu.edu/) R Working Group was started in Spring of 2016 by [Alli N. Cramer](https://www.allicramer.com/) in conjunction with [CEREO](https://cereo.wsu.edu/). The group, founded by a PhD student, is focused on peer-to-peer learning through student, post-doc, and faculty-lead seminars. [Alex Kappes](https://twitter.com/alex_kappes341) and Supriya Savalkar are the current organizers. [Michael Meyer](https://labs.wsu.edu/hampton/people/michael-meyer/) and [Matthew Brousil](https://labs.wsu.edu/hampton/people/matthew-brousil/) are the outgoing organizers.
 
 No matter what your experience with R, we’d love to have you join us. R is a constantly evolving open source platform, so we are all always learning.
 
