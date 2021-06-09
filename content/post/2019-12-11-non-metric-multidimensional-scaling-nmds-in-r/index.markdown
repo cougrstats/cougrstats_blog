@@ -63,58 +63,34 @@ Let's consider an example of species counts for three sites.
 
 <table style="margin-left:auto;margin-right:auto;" class="table table-striped">
 
-<tr>
-site
-species_1
-species_2
-species_3
+<tr> <th>site</th> <th>species_1</th> <th>species_2</th> <th>species_3</th>
 </tr>
 
-<tbody>
-<tr>
+<tbody> <tr>
 
-<td style="text-align:left;">A
-</td>
+<td style="text-align:left;">A </td>
 
-<td style="text-align:right;">0
-</td>
+<td style="text-align:right;">0 </td>
 
-<td style="text-align:right;">1
-</td>
+<td style="text-align:right;">1 </td>
 
-<td style="text-align:right;">1
-</td>
-</tr>
-<tr>
+<td style="text-align:right;">1 </td> </tr> <tr>
 
-<td style="text-align:left;">B
-</td>
+<td style="text-align:left;">B </td>
 
-<td style="text-align:right;">1
-</td>
+<td style="text-align:right;">1 </td>
 
-<td style="text-align:right;">0
-</td>
+<td style="text-align:right;">0 </td>
 
-<td style="text-align:right;">0
-</td>
-</tr>
-<tr>
+<td style="text-align:right;">0 </td> </tr> <tr>
 
-<td style="text-align:left;">C
-</td>
+<td style="text-align:left;">C </td>
 
-<td style="text-align:right;">0
-</td>
+<td style="text-align:right;">0 </td>
 
-<td style="text-align:right;">4
-</td>
+<td style="text-align:right;">4 </td>
 
-<td style="text-align:right;">4
-</td>
-</tr>
-</tbody>
-</table>
+<td style="text-align:right;">4 </td> </tr> </tbody> </table>
 
 If we were to produce the Euclidean distances between each of the sites, it would look something like this:
 
